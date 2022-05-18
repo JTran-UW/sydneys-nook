@@ -1,0 +1,29 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sydney Lai Blog</title>
+        <link rel="stylesheet" href="{% static 'styles.css' %}">
+
+        {% block styles %}
+        {% endblock %}
+    </head>
+    <body>
+        <header>
+            <a href="{% url 'home' %}">
+                <h1>Sydney Lai Blog</h1>
+            </a>
+
+            <div id="link-bar">
+                <a href="#">About</a>
+                <a href="{% url 'blog' %}">Blog</a>
+            </div>
+        </header>
+
+        <div id="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </body>
+</html>
