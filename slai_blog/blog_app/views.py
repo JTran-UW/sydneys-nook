@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from notion_client import Client
-from .models import Article
+from .models import BlogPost
 from django.http import Http404
 
 # TODO Change this!
@@ -21,22 +21,18 @@ def blog(request):
 
     blog_blurbs = []
     for page in kanban["results"]:
-        post_id = page["id"]
-        blocks = notion.blocks.children.list(post_id)["results"]
-        article = Article(page, blocks)
-        blog_blurbs.append(article.get_blurb())
+        post = BlogPost(page["id"])
+        blog_blurbs.append(post.get_blurb())
 
     return render(request, "blog_app/blog.html", {"blogs": blog_blurbs})
 
 def post_page(request, post_id):
-    page = notion.pages.retrieve(post_id)
-    blocks = notion.blocks.children.list(post_id)['results']
-    article = Article(page, blocks)
+    post = BlogPost(post_id)
 
-    if article.status == "Done":
+    if post.status == "Done":
         return render(request, "blog_app/post.html", {
-            "title": article.title, 
-            "blocks": article.get_article_as_html()
+            "title": post.title, 
+            "post": post.get_post_as_html()
         })
     else:
         raise Http404
