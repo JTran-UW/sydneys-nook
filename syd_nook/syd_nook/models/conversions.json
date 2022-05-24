@@ -1,0 +1,42 @@
+{
+    "heading_1": {
+        "html": "h2",
+        "block_type": "text"
+    },
+    "heading_2": {
+        "html": "h3",
+        "block_type": "text"
+    },
+    "heading_3": {
+        "html": "h4",
+        "block_type": "text"
+    },
+    "paragraph": {
+        "html": "p",
+        "block_type": "text"
+    },
+    "bulleted_list_item": {
+        "html": "li",
+        "block_type": "text"
+    },
+    "numbered_list_item": {
+        "html": "li",
+        "block_type": "numbered_list"
+    },
+    "image": {
+        "html": "img",
+        "block_type": "image"
+    },
+    "table": {
+        "html": "table",
+        "block_type": "table"
+    },
+    "table_row": {
+        "html": "tr",
+        "block_type": "table_row"
+    },
+    "link": {
+        "html": "a",
+        "block_type": "text"
+    }
+}

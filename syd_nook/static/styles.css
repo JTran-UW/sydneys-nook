@@ -1,0 +1,73 @@
+/**
+Universal styles
+*/
+
+@font-face {
+    font-family: 'Resist Text Light';
+    src: url("ResistText.otf")
+}
+
+@font-face {
+    font-family: 'Pockota';
+    src: url("Pockota-Regular.otf")
+}
+
+* {
+    font-family: 'Resist Text Light'
+}
+
+/**
+Header styles
+*/
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px;
+
+    border-bottom: 2px solid black;
+}
+
+h1 {
+    font-family: 'Pockota';
+    font-weight: 100;
+    font-size: 52px;
+}
+
+p {
+    font-size: 24px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+#link-bar a {
+    margin: 0px 20px;
+}
+
+/**
+Body styles
+*/
+
+#content {
+    width: 60%;
+    margin: 30px auto;
+}
+
+/**
+Blog styles
+*/
+
+.post-block {
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 40px;
+    margin-top: 20px;
+}
+
+table, td {
+    border: 1px solid black;
+}

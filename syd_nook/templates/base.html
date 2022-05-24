@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Sydney Lai Blog</title>
+        <title>Sydney's Nook</title>
         <link rel="stylesheet" href="{% static 'styles.css' %}">
 
         {% block styles %}
@@ -12,13 +12,8 @@
     <body>
         <header>
             <a href="{% url 'home' %}">
-                <h1>Sydney Lai Blog</h1>
+                <h1>Sydney's Nook</h1>
             </a>
-
-            <div id="link-bar">
-                <a href="#">About</a>
-                <a href="{% url 'blog' %}">Blog</a>
-            </div>
         </header>
 
         <div id="content">
