@@ -2,8 +2,10 @@ from notion_client import Client
 import datetime
 from .Block import *
 import json
+import os
 
-with open("syd_nook/syd_nook/models/conversions.json", "r") as f:
+file_path = os.path.abspath("syd_nook/models/conversions.json")
+with open(file_path) as f:
     conversions_json = json.load(f)
 
 notion_secret = "secret_Tch7KJPv1hUom2vXB9CnZMk9u6fo9XbKNVVZjSBKnUs"

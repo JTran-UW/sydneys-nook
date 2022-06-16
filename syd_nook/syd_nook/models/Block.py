@@ -1,8 +1,10 @@
 from abc import ABC, abstractmethod
 import datetime
 import json
+import os
 
-with open("syd_nook/syd_nook/models/conversions.json") as f:
+file_path = os.path.abspath("syd_nook/models/conversions.json")
+with open(file_path) as f:
     conversions_json = json.load(f)
 
 class Block(ABC):
