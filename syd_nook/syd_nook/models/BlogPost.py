@@ -3,7 +3,7 @@ import datetime
 from .Block import *
 import json
 
-with open("syd_nook/models/conversions.json", "r") as f:
+with open("conversions.json", "r") as f:
     conversions_json = json.load(f)
 
 notion_secret = "secret_Tch7KJPv1hUom2vXB9CnZMk9u6fo9XbKNVVZjSBKnUs"
