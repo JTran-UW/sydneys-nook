@@ -1,13 +1,28 @@
-{% extends 'base.html' %}
+{% load static %}
 
-{% block content %}
-    {% for blog in blogs %}
-        <a href="blog/{{ blog.id }}">
-            <section class="post-block">
-                <h2>{{ blog.title }}</h2>
-                <p>{{ blog.date_edited }}</p>
-                <p>{{ blog.peek }}</p>
-            </section>
-        </a>
-    {% endfor %}
-{% endblock %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sydney's Nook</title>
+        <link rel="stylesheet" href="{% static 'styles.css' %}">
+    </head>
+    <body>
+        <header>
+            <a href="{% url 'home' %}">
+                <h1>Sydney's Nook</h1>
+            </a>
+        </header>
+
+        <div id="content">
+            {% for blog in blogs %}
+                <a href="blog/{{ blog.id }}">
+                    <section class="post-block">
+                        <h2>{{ blog.title }}</h2>
+                        <p>{{ blog.date_edited }}</p>
+                        <p>{{ blog.peek }}</p>
+                    </section>
+                </a>
+            {% endfor %}
+        </div>
+    </body>
+</html>

@@ -2,18 +2,8 @@
 Universal styles
 */
 
-@font-face {
-    font-family: 'Resist Text Light';
-    src: url("ResistText.otf")
-}
-
-@font-face {
-    font-family: 'Pockota';
-    src: url("Pockota-Regular.otf")
-}
-
 * {
-    font-family: 'Resist Text Light'
+    font-family: 'Lato'
 }
 
 /**
@@ -30,7 +20,7 @@ header {
 }
 
 h1 {
-    font-family: 'Pockota';
+    font-family: 'YoungSerif';
     font-weight: 100;
     font-size: 52px;
 }
