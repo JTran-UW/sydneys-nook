@@ -1,1 +1,1 @@
-web: gunicorn syd_nook.wsgi
+web: gunicorn syd_nook.syd_nook.wsgi
