@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 import datetime
 import json
 
-with open("/models/conversions.json") as f:
+with open("syd_nook/syd_nook/models/conversions.json") as f:
     conversions_json = json.load(f)
 
 class Block(ABC):
