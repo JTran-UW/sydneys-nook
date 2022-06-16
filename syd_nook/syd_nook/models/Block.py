@@ -3,8 +3,8 @@ import datetime
 import json
 import os
 
-file_path = os.path.abspath("syd_nook/models/conversions.json")
-with open(file_path) as f:
+dirname = os.path.dirname(__file__)
+with open(os.path.join(dirname, "conversions.json")) as f:
     conversions_json = json.load(f)
 
 class Block(ABC):

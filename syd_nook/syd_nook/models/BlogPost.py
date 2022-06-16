@@ -4,8 +4,8 @@ from .Block import *
 import json
 import os
 
-file_path = os.path.abspath("syd_nook/models/conversions.json")
-with open(file_path) as f:
+dirname = os.path.dirname(__file__)
+with open(os.path.join(dirname, "conversions.json")) as f:
     conversions_json = json.load(f)
 
 notion_secret = "secret_Tch7KJPv1hUom2vXB9CnZMk9u6fo9XbKNVVZjSBKnUs"
