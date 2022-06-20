@@ -5,22 +5,35 @@
     <head>
         <title>Sydney's Nook</title>
         <link rel="stylesheet" href="{% static 'styles.css' %}">
+        <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     </head>
     <body>
-        <header>
-            <a href="{% url 'home' %}">
-                <h1>Sydney's Nook</h1>
-            </a>
-        </header>
-
         <div id="content">
+            <h1 id="logo">Sydney's Nook</h1>
+            <p id="subline">A room of my own</p>
+
+            <section id="about">
+                <h2>The Nook Opens</h2>
+                <h3>June 20, 2022</h3>
+                <p>I resolved to start writing.  Every day, every week, every year--it didn’t matter, just write.  The only thing I knew that would keep me accountable was publicity, an audience.  Just knowing one person could happen upon my internet pitstop keeps the words flowing from my little desk in Seattle.
+
+                    <br><br>The subline is a reference to Virgina Woolf’s novel A Room of One’s Own.  It concerns a woman’s need for independent space--physical, mental, emotional--to write and express herself.  In this digital world, I figure a website, an online room of my own, only makes sense.</p>
+            </section>
+        </div>
+
+        <div>
+            <div>
+                <input id="search" class="bordered" placeholder="Search" />
+            </div>
+            
             {% for blog in blogs %}
                 <a href="blog/{{ blog.id }}">
-                    <section class="post-block">
-                        <h2>{{ blog.title }}</h2>
-                        <p>{{ blog.date_edited }}</p>
-                        <p>{{ blog.peek }}</p>
-                    </section>
+                    <div class="bordered">
+                        <section class="post-header">
+                            <h2 class="post-title">{{ blog.title }}</h2>
+                            <p>{{ blog.date_edited|date:"M d, Y" }}</p>
+                        </section>
+                    </div>
                 </a>
             {% endfor %}
         </div>
