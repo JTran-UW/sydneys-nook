@@ -13,12 +13,11 @@ notion_secret = "secret_Tch7KJPv1hUom2vXB9CnZMk9u6fo9XbKNVVZjSBKnUs"
 notion = Client(auth=notion_secret)
 
 class BlogPost:
-    def __init__(self, post_id: dict):
+    def __init__(self, post_id: str):
         """
         Blog post object
 
-        :param page: JSON page information as dict
-        :param blocks: JSON blocks information as list of dicts
+        :param post_id: ID of post
         """
         self.id: str = post_id
         page: dict = notion.pages.retrieve(self.id)
@@ -26,6 +25,7 @@ class BlogPost:
 
         self.title: str = page["properties"]["Name"]["title"][0]["plain_text"]
         self.description: str = page["properties"]["Description"]["rich_text"][0]["plain_text"]
+        self.thumbnail: str = page["properties"]["Thumbnail"]["files"][0]["file"]["url"]
         self.status: str = page["properties"]["Status"]["select"]["name"]
         self.date_edited: datetime.date = datetime.datetime.strptime(page["last_edited_time"], "%Y-%m-%dT%H:%M:%S.%fZ")
         self.blocks: list[Block] = self._parse_blocks(blocks_json)
@@ -43,7 +43,8 @@ class BlogPost:
             "title": self.title,
             "id": self.id,
             "date_edited": self.date_edited,
-            "peek": self.description
+            "peek": self.description,
+            "thumbnail": self.thumbnail
         }
 
     def get_post_as_html(self):

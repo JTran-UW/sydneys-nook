@@ -5,7 +5,11 @@ Font
 @font-face {
     font-family: YoungSerif;
     src: url("YoungSerif-Regular.otf");
-  }
+}
+
+.young-serif {
+    font-family: YoungSerif;
+}
 
 /**
 Universal styles
@@ -36,6 +40,7 @@ body {
     margin: 0px;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    height: 100vh;
 }
 
 .bordered {
@@ -81,17 +86,29 @@ Content styles
 Articles styles
 */
 
+#articles {
+    overflow-y: scroll;
+}
+
 #search {
     padding: 10px 28px;
     font-size: 45px;
     width: 100%;
     box-sizing: border-box;
     outline: none;
+    font-family: YoungSerif;
 }
 
 #search::placeholder {
     color: black;
-    font-family: YoungSerif;
+}
+
+.post:hover > .post-tn {
+    box-shadow: inset 0 0 0 1000px rgba(0,0,0,0.75);
+}
+
+.post:hover > .post-tn > p {
+    opacity: 0.9;
 }
 
 .post-title {
@@ -104,4 +121,20 @@ Articles styles
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.post-tn {
+    padding: 28px;
+    height: 500px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    transition-duration: 0.3s;
+    box-shadow: inset 0 0 0 1000px rgba(0,0,0,.5);
+}
+
+.post-tn p {
+    transition-duration: 0.3s;
+    opacity: 0;
+    color: white;
 }

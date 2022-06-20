@@ -6,6 +6,7 @@
         <title>Sydney's Nook</title>
         <link rel="stylesheet" href="{% static 'styles.css' %}">
         <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <script src="{% static 'script.ts' %}" ></script>
     </head>
     <body>
         <div id="content">
@@ -21,20 +22,22 @@
             </section>
         </div>
 
-        <div>
+        <div id="articles">
             <div>
                 <input id="search" class="bordered" placeholder="Search" />
             </div>
             
             {% for blog in blogs %}
-                <a href="blog/{{ blog.id }}">
-                    <div class="bordered">
-                        <section class="post-header">
-                            <h2 class="post-title">{{ blog.title }}</h2>
-                            <p>{{ blog.date_edited|date:"M d, Y" }}</p>
-                        </section>
+                <div class="bordered post">
+                    <section class="post-header">
+                        <h2 class="post-title">{{ blog.title }}</h2>
+                        <p class="young-serif">{{ blog.date_edited|date:"M d, Y" }}</p>
+                    </section>
+
+                    <div class="post-tn" style="background-image: url({{ blog.thumbnail }})">
+                        <p>{{ blog.peek }}</p>
                     </div>
-                </a>
+                </div>
             {% endfor %}
         </div>
     </body>
