@@ -35,7 +35,7 @@ const closeArticle = () => {
             "height": holder.offsetHeight + "px",
             "left": pos.left + "px",
             "top": pos.top + "px",
-        }, 800)
+        }, 600)
     }, 200);
 
     // Lower box opacity
@@ -79,7 +79,7 @@ function expand(elem) {
             "height": '100%',
             "top": 0,
             "left": 0,
-        }, 800);
+        }, 600);
     }, 200);
     
     // Reveal the article contents

@@ -194,6 +194,7 @@ Article styles
     background-color: black;
     color: white;
     opacity: 0.2;
+    overflow: hidden;
 }
 
 #article > * {
