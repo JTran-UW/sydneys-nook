@@ -5,7 +5,7 @@
     <head>
         <title>Sydney's Nook</title>
         <link rel="stylesheet" href="{% static 'styles.css' %}">
-        <link href='https://css.gg/close.css' rel='stylesheet'>
+        <link href='https://css.gg/arrow-left.css' rel='stylesheet'>
         <link href='https://css.gg/search.css' rel='stylesheet'>
         <link href='https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -46,10 +46,14 @@
         </div>
 
         <div id="article">
-            <i id="close-article" class="gg-close" onclick="closeArticle()"></i>
-
-            <h1 id="article-title"></h1>
-            <div id="article-content"></div>
+            <span id="close-article">
+                <i class="gg-arrow-left" onclick="closeArticle()"></i>
+            </span>
+            
+            <div>
+                <h1 id="article-title"></h1>
+                <div id="article-content"></div>
+            </div>
         </div>
     </body>
 </html>

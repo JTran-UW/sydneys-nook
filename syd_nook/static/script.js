@@ -41,14 +41,17 @@ const closeArticle = () => {
     // Lower box opacity
     setTimeout(() => {
         $(box).animate({
-            "opacity": 0.2,
-        }, 200)
+            "opacity": 0,
+        }, 300)
+    }, 1400);
 
+    // Remove box
+    setTimeout(() => {
         $(box).css({
             "width": "0px",
             "height": "0px",
         })
-    }, 1400);
+    }, 1700)
 
     // Change url
     window.history.back();
