@@ -5,8 +5,11 @@
     <head>
         <title>Sydney's Nook</title>
         <link rel="stylesheet" href="{% static 'styles.css' %}">
+        <link href='https://css.gg/close.css' rel='stylesheet'>
+        <link href='https://css.gg/search.css' rel='stylesheet'>
         <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-        <script src="{% static 'script.ts' %}" ></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="{% static 'script.js' %}" ></script>
     </head>
     <body>
         <div id="content">
@@ -23,12 +26,13 @@
         </div>
 
         <div id="articles">
-            <div>
-                <input id="search" class="bordered" placeholder="Search" />
+            <div id="search">
+                <i id="search-icon" class="gg-search"></i>
+                <input id="search-bar" class="bordered" placeholder="Search" />
             </div>
             
             {% for blog in blogs %}
-                <div class="bordered post">
+                <div class="bordered post" onclick="openArticle(this)" id="{{ blog.id }}">
                     <section class="post-header">
                         <h2 class="post-title">{{ blog.title }}</h2>
                         <p class="young-serif">{{ blog.date_edited|date:"M d, Y" }}</p>
@@ -39,6 +43,13 @@
                     </div>
                 </div>
             {% endfor %}
+        </div>
+
+        <div id="article">
+            <i id="close-article" class="gg-close" onclick="closeArticle()"></i>
+
+            <h1 id="article-title"></h1>
+            <div id="article-content"></div>
         </div>
     </body>
 </html>

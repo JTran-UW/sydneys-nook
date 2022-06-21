@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from notion_client import Client
 from .models.BlogPost import BlogPost
-from django.http import Http404
+from django.http import Http404, JsonResponse
 
 # TODO Change this!
 notion_secret = "secret_Tch7KJPv1hUom2vXB9CnZMk9u6fo9XbKNVVZjSBKnUs"
@@ -30,7 +30,7 @@ def post_page(request, post_id):
     post = BlogPost(post_id)
 
     if post.status == "Done":
-        return render(request, "post.html", {
+        return JsonResponse({
             "title": post.title, 
             "post": post.get_post_as_html()
         })
