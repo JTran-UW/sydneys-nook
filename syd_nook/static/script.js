@@ -1,6 +1,13 @@
-const openArticle = (elem) => { 
-    // Get article text
+const openArticle = (elem) => {
+    // Remove onclick attrivbute
+    elem.setAttribute("onclick", "");
+
     newUrl = window.location + "blog/" + elem.id
+
+    // Change url and push to history
+    history.pushState({}, "", newUrl);
+
+    // Get article text
     fetch(newUrl)
     .then(response => response.json())
     .then(data => {
@@ -9,12 +16,15 @@ const openArticle = (elem) => {
 
         // Show article
         expand(elem);
-
-        // Change url and push to history
-        history.pushState({}, "", newUrl);
     });
 }
 const closeArticle = () => {
+    // Remove onclick attribute
+    document.getElementById("close-article").setAttribute("onclick", "");
+
+    // Change url
+    window.history.back();
+
     const box = document.getElementById("article");
     const post_id = window.location.pathname.split("/")[2]
     const post = document.getElementById(post_id)
@@ -51,13 +61,14 @@ const closeArticle = () => {
             "width": "0px",
             "height": "0px",
         })
-    }, 1700)
+    }, 1700);
 
-    // Change url
-    window.history.back();
+    // Re-add onclick attribute
+    post.setAttribute("onclick", "javascript: openArticle(this);")
 }
 
 function expand(elem) {
+    document.getElementById("close-article").setAttribute("onclick", "javascript: closeArticle(this);");
     let box = document.getElementById("article");
     let holder = $(elem).children(".post-tn")[0]
 
