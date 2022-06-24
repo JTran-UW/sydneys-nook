@@ -20,6 +20,6 @@ from .views import home, post_page
 
 urlpatterns = [
     path('', home, name="home"),
-    path('blog/<str:post_id>', post_page, name="post page"),
+    path('blog/content/<str:post_id>', post_page, name="post page"),
     path('admin/', admin.site.urls),
 ]

@@ -32,6 +32,7 @@ def post_page(request, post_id):
     if post.status == "Done":
         return JsonResponse({
             "title": post.title, 
+            "date_edited": post.date_edited,
             "post": post.get_post_as_html()
         })
     else:

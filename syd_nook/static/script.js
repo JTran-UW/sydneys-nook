@@ -1,105 +1,80 @@
-const openArticle = (elem) => {
-    // Remove onclick attrivbute
-    elem.setAttribute("onclick", "");
+const delay = 250;
+const duration = 1000;
 
-    newUrl = window.location + "blog/" + elem.id
+$(function() {
+    const postChildren = $("#post").children();
+    revealElems(postChildren);
+});
 
-    // Change url and push to history
-    history.pushState({}, "", newUrl);
+function loadPost(postLinkElem) {
+    // Get content
+    fetch(window.location + "blog/content/" + postLinkElem.id)
+        .then(response => response.json())
+        .then(data => {
+            const bodyChildren = $("#post-body").children();
+            bodyChildren.css({
+                "opacity": 0,
+            });
 
-    // Get article text
-    fetch(newUrl)
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById("article-title").innerHTML = data["title"];
-        document.getElementById("article-content").innerHTML = data["post"];
+            let date = new Date(data["date_edited"]);
+            let dateString = date.toDateString();
 
-        // Show article
-        expand(elem);
-    });
-}
-const closeArticle = () => {
-    // Remove onclick attribute
-    document.getElementById("close-article").setAttribute("onclick", "");
+            // Put this data in the blog
+            $("#post-title").html(data["title"]);
+            $("#post-date").html(dateString);
+            $("#post-content").html(data["post"])
 
-    // Change url
-    window.history.back();
-
-    const box = document.getElementById("article");
-    const post_id = window.location.pathname.split("/")[2]
-    const post = document.getElementById(post_id)
-    const holder = $(post).children(".post-tn")[0];
-
-    // Get its position
-    const pos = $(holder).position();
-
-    // Hide contents
-    $(box).children().animate({
-        "opacity": 0
-    }, 200);
-
-    // Animate the box to contract
-    setTimeout(() => {
-        $(box).animate({
-            "width": holder.offsetWidth + "px",
-            "height": holder.offsetHeight + "px",
-            "left": pos.left + "px",
-            "top": pos.top + "px",
-        }, 600)
-    }, 200);
-
-    // Lower box opacity
-    setTimeout(() => {
-        $(box).animate({
-            "opacity": 0,
-        }, 300)
-    }, 1400);
-
-    // Remove box
-    setTimeout(() => {
-        $(box).css({
-            "width": "0px",
-            "height": "0px",
-        })
-    }, 1700);
-
-    // Re-add onclick attribute
-    post.setAttribute("onclick", "javascript: openArticle(this);")
+            revealElems(bodyChildren);
+        });
 }
 
-function expand(elem) {
-    document.getElementById("close-article").setAttribute("onclick", "javascript: closeArticle(this);");
-    let box = document.getElementById("article");
-    let holder = $(elem).children(".post-tn")[0]
+function revealElems(elems) {
+    for (let i = 0; i < elems.length; i++)
+    {
+        $(elems[i]).delay(delay * i).animate({
+            "opacity": 1,
+        }, duration);
+    }
+}
 
-    // Get and set its position
-    let pos = $(holder).position();
-    $(box).css({
-        "left": pos.left + "px",
-        "top": pos.top + "px",
-        "width": holder.offsetWidth + "px",
-        "height": holder.offsetHeight + "px",
+expandPost = (button) => {
+    // Change button properties
+    $(button).removeAttr("onclick");
+    $(button).removeClass("gg-arrows-expand-left").addClass("gg-minimize-alt");
+
+    let post = $("#post-wrapper");
+    let postClone = post.clone();
+    postClone.attr("id", "post-clone");
+    postClone.prependTo("body");
+    post.css({
+        "position": "absolute",
+        "z-index": 99,
+        "width": "50vw",
+        "height": "100%"
+    });
+    post.animate({
+        "width": "100vw",
+    }, 1000);
+
+    // Remove content of clone for wrapping issues
+    $("#post-content").html("");
+
+    $(button).attr("onclick", "javascript: closePost(this);");
+}
+
+closePost = (button) => {
+    // Change button properties
+    $(button).removeAttr("onclick");
+    $(button).removeClass("gg-minimize-alt").addClass("gg-arrows-expand-left");
+
+    let post = $("#post-wrapper");
+    $("#post-clone").remove();
+    post.animate({
+        "width": "50vw",
+    }, 1000);
+    post.css({
+        "position": "relative"
     });
 
-    // Show the box
-    $(box).animate({
-        "opacity": 0.92,
-    }, 200);
-    
-    // Animate the box to expand
-    setTimeout(() => {
-        $(box).animate({
-            "width": '100%',
-            "height": '100%',
-            "top": 0,
-            "left": 0,
-        }, 600);
-    }, 200);
-    
-    // Reveal the article contents
-    setTimeout(() => {
-        $(box).children().animate({
-            "opacity": "1"
-        }, 200)
-    }, 1400);
+    $(button).attr("onclick", "javascript: expandPost(this);");
 }

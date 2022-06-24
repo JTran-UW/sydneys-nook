@@ -5,55 +5,53 @@
     <head>
         <title>Sydney's Nook</title>
         <link rel="stylesheet" href="{% static 'styles.css' %}">
+        <link href='https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
         <link href='https://css.gg/arrow-left.css' rel='stylesheet'>
         <link href='https://css.gg/search.css' rel='stylesheet'>
-        <link href='https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <link href='https://css.gg/arrows-expand-left.css' rel='stylesheet'>
+        <link href='https://css.gg/minimize-alt.css' rel='stylesheet'>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="{% static 'script.js' %}" ></script>
     </head>
     <body>
-        <div id="content">
-            <h1 id="logo">Sydney's Nook</h1>
-            <p id="subline">A room of my own</p>
+        <div id="post-wrapper">
+            <i class="gg-arrows-expand-left" onclick="expandPost(this)" id="fullscreen"></i>
 
-            <section id="about">
-                <h2>The Nook Opens</h2>
-                <h3>June 20, 2022</h3>
-                <p>I resolved to start writing.  Every day, every week, every year--it didn’t matter, just write.  The only thing I knew that would keep me accountable was publicity, an audience.  Just knowing one person could happen upon my internet pitstop keeps the words flowing from my little desk in Seattle.
+            <div id="post">
+                <h1 id="logo">Sydney's Nook</h1>
+                <p id="subline">A room of my own</p>
 
-                    <br><br>The subline is a reference to Virgina Woolf’s novel A Room of One’s Own.  It concerns a woman’s need for independent space--physical, mental, emotional--to write and express herself.  In this digital world, I figure a website, an online room of my own, only makes sense.</p>
-            </section>
+                <section id="post-body">
+                    <h2 id="post-title">The Nook Opens</h2>
+                    <h3 id="post-date">June 20, 2022</h3>
+                    <div id="post-content">
+                        <p>I resolved to start writing.  Every day, every week, every year--it didn’t matter, just write.  The only thing I knew that would keep me accountable was publicity, an audience.  Just knowing one person could happen upon my internet pitstop keeps the words flowing from my little desk in Seattle.
+
+                            <br><br>The subline is a reference to Virgina Woolf’s novel A Room of One’s Own.  It concerns a woman’s need for independent space--physical, mental, emotional--to write and express herself.  In this digital world, I figure a website, an online room of my own, only makes sense.
+                        </p>
+                    </div>
+                </section>
+            </div>
         </div>
 
-        <div id="articles">
+        <div id="post-links">
             <div id="search">
                 <i id="search-icon" class="gg-search"></i>
                 <input id="search-bar" class="bordered" placeholder="Search" />
             </div>
             
             {% for blog in blogs %}
-                <div class="bordered post" onclick="openArticle(this)" id="{{ blog.id }}">
-                    <section class="post-header">
-                        <h2 class="post-title">{{ blog.title }}</h2>
+                <div class="bordered post-link" onclick="loadPost(this)" id="{{ blog.id }}">
+                    <section class="post-link-header">
+                        <h2 class="post-link-title">{{ blog.title }}</h2>
                         <p class="young-serif">{{ blog.date_edited|date:"M d, Y" }}</p>
                     </section>
 
-                    <div class="post-tn" style="background-image: url({{ blog.thumbnail }})">
+                    <div class="post-link-tn" style="background-image: url({{ blog.thumbnail }})">
                         <p>{{ blog.peek }}</p>
                     </div>
                 </div>
             {% endfor %}
-        </div>
-
-        <div id="article">
-            <span id="close-article">
-                <i class="gg-arrow-left"></i>
-            </span>
-            
-            <div>
-                <h1 id="article-title"></h1>
-                <div id="article-content"></div>
-            </div>
         </div>
     </body>
 </html>

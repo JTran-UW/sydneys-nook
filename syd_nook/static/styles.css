@@ -52,38 +52,56 @@ body {
 Content styles
 */
 
-#content {
-    border: 4px solid black;
-    padding: 10px 15%;
+#post-wrapper {
+    box-shadow: inset 0px 0px 0px 4px black;
+    overflow-y: scroll;
+    background-color: white;
+    position: relative;
+}
+
+#post > * {
+    opacity: 0;
+    max-width: 850px;
+    width: 75%;
+    margin: 10px auto;
 }
 
 #logo {
     font-size: 84px;
-    margin-bottom: 0px;
+    margin-top: 60px;
 }
 
 #subline {
     font-size: 52px;
-    margin: 0px;
 }
 
-#about {
+#post-body {
     margin-top: 75px;
 }
 
-#about h2 {
+#post-body h2 {
     font-size: 36px;
-    margin: 20px 0px;
 }
 
-#about h3 {
+#post-body h3 {
     font-size: 28px;
-    margin: 10px 0px;
 }
 
-#about p {
+#post-body p {
     font-size: 25px;
     line-height: 36px;
+}
+
+#fullscreen {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    transition-duration: 0.3s;
+}
+
+#fullscreen:hover {
+    --ggs: 1.5
 }
 
 /**
@@ -115,7 +133,7 @@ border: 0px solid #ffffff;
 Articles styles
 */
 
-#articles {
+#post-links {
     overflow-y: scroll;
 }
 
@@ -146,16 +164,16 @@ Articles styles
     color: black;
 }
 
-.post {
+.post-link {
     cursor: pointer;
 }
 
-.post-title {
+.post-link-title {
     font-size: 32px;
     margin: 0px;
 }
 
-.post-header {
+.post-link-header {
     border-bottom: 4px solid black;
     padding: 0px 28px;
     display: flex;
@@ -163,7 +181,11 @@ Articles styles
     align-items: center;
 }
 
-.post-tn {
+.post-link-header * {
+    white-space: nowrap;
+}
+
+.post-link-tn {
     padding: 28px;
     height: 500px;
     background-size: cover;
@@ -173,15 +195,15 @@ Articles styles
     box-shadow: inset 0 0 0 1000px rgba(0,0,0,.5);
 }
 
-.post:hover > .post-tn {
+.post-link:hover > .post-link-tn {
     box-shadow: inset 0 0 0 1000px rgba(0,0,0,0.75);
 }
 
-.post:hover > .post-tn > p {
+.post-link:hover > .post-link-tn > p {
     opacity: 0.9;
 }
 
-.post-tn p {
+.post-link-tn p {
     transition-duration: 0.3s;
     opacity: 0;
     color: white;
