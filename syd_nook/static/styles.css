@@ -39,7 +39,6 @@ a {
 body {
     margin: 0px;
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
     height: 100vh;
     position: relative;
 }
@@ -52,9 +51,8 @@ body {
 Content styles
 */
 
-#post-wrapper {
-    box-shadow: inset 0px 0px 0px 4px black;
-    overflow-y: scroll;
+#post {
+    overflow-y: auto;
     background-color: white;
     position: relative;
 }
@@ -67,8 +65,8 @@ Content styles
 }
 
 #logo {
-    font-size: 84px;
     margin-top: 60px;
+    font-size: 84px;
 }
 
 #subline {
@@ -97,6 +95,10 @@ Content styles
     top: 20px;
     right: 20px;
     cursor: pointer;
+    width: auto;
+}
+
+#fullscreen i {
     transition-duration: 0.3s;
 }
 
@@ -110,23 +112,22 @@ Scrollbar styles
 
 /* Firefox */
 * {
-scrollbar-width: auto;
-scrollbar-color: white #000000;
+    scrollbar-width: auto;
+    scrollbar-color: #000000 #ffffff;
 }
 
 /* Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
-width: 3px;
+    width: 3px;
 }
 
 *::-webkit-scrollbar-track {
-background: #000000;
+    background: #ffffff;
 }
 
 *::-webkit-scrollbar-thumb {
-background-color: white;
-border-radius: 10px;
-border: 0px solid #ffffff;
+    background-color: #000000;
+    border: 3px solid #000000;
 }
 
 /**
@@ -158,6 +159,7 @@ Articles styles
     box-sizing: border-box;
     outline: none;
     font-family: YoungSerif;
+    border-bottom: none;
 }
 
 #search-bar::placeholder {

@@ -1,7 +1,15 @@
 const delay = 250;
 const duration = 1000;
+const leftFr = 1;
+const rightFr = 1;
+const screenRatio = leftFr * 100 / (leftFr + rightFr);
 
 $(function() {
+    // Set screen ratio
+    $("body").css({
+        "grid-template-columns": leftFr + "fr " + rightFr + "fr" 
+    });
+
     const postChildren = $("#post").children();
     revealElems(postChildren);
 });
@@ -31,30 +39,42 @@ function loadPost(postLinkElem) {
 function revealElems(elems) {
     for (let i = 0; i < elems.length; i++)
     {
+        let elem = elems[i];
+        $(elem).stop().css({
+            "opacity": 0,
+        });
+
         $(elems[i]).delay(delay * i).animate({
             "opacity": 1,
         }, duration);
     }
 }
 
-expandPost = (button) => {
+function expandPost(button) {
+    // Make other links unclickable
+    $("#post-links").css({
+        "pointer-events": "none",
+    });
+
     // Change button properties
     $(button).removeAttr("onclick");
-    $(button).removeClass("gg-arrows-expand-left").addClass("gg-minimize-alt");
+    let icon = $(button).children()[0];
+    $(icon).removeClass("gg-arrows-expand-left").addClass("gg-minimize-alt");
 
-    let post = $("#post-wrapper");
+    // Animate the post wrapper to fill the screen
+    let post = $("#post");
     let postClone = post.clone();
     postClone.attr("id", "post-clone");
     postClone.prependTo("body");
     post.css({
         "position": "absolute",
         "z-index": 99,
-        "width": "50vw",
+        "width": screenRatio + "vw",
         "height": "100%"
     });
     post.animate({
-        "width": "100vw",
-    }, 1000);
+        "width": "100%",
+    }, 800);
 
     // Remove content of clone for wrapping issues
     $("#post-content").html("");
@@ -62,19 +82,30 @@ expandPost = (button) => {
     $(button).attr("onclick", "javascript: closePost(this);");
 }
 
-closePost = (button) => {
+function closePost(button) {
     // Change button properties
     $(button).removeAttr("onclick");
-    $(button).removeClass("gg-minimize-alt").addClass("gg-arrows-expand-left");
+    let icon = $(button).children()[0];
+    $(icon).removeClass("gg-minimize-alt").addClass("gg-arrows-expand-left");
 
-    let post = $("#post-wrapper");
-    $("#post-clone").remove();
+    let delay = 800;
+    let post = $("#post");
     post.animate({
-        "width": "50vw",
-    }, 1000);
-    post.css({
-        "position": "relative"
-    });
-
-    $(button).attr("onclick", "javascript: expandPost(this);");
+        "width": screenRatio + "vw",
+    }, delay);
+    setTimeout(() => {
+        post.css({
+            "position": "relative",
+            "height": "auto",
+        });
+        $("#post-clone").remove();
+        
+        // Reset button click listener
+        $(button).attr("onclick", "javascript: expandPost(this);");
+    
+        // Reset post links
+        $("#post-links").css({
+            "pointer-events": "auto",
+        });
+    }, delay);
 }
