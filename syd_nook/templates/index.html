@@ -39,19 +39,6 @@
                 <i id="search-icon" class="gg-search"></i>
                 <input id="search-bar" class="bordered" placeholder="Search" />
             </div>
-            
-            {% for blog in blogs %}
-                <div class="bordered post-link" onclick="loadPost(this)" id="{{ blog.id }}">
-                    <section class="post-link-header">
-                        <h2 class="post-link-title">{{ blog.title }}</h2>
-                        <p class="young-serif">{{ blog.date_edited|date:"M d, Y" }}</p>
-                    </section>
-
-                    <div class="post-link-tn" style="background-image: url({{ blog.thumbnail }})">
-                        <p>{{ blog.peek }}</p>
-                    </div>
-                </div>
-            {% endfor %}
         </div>
     </body>
 </html>

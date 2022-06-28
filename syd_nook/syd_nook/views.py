@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from notion_client import Client
 from .models.BlogPost import BlogPost
-from django.http import Http404, JsonResponse
+from django.http import Http404, HttpResponseBadRequest, JsonResponse
 
 # TODO Change this!
 notion_secret = "secret_Tch7KJPv1hUom2vXB9CnZMk9u6fo9XbKNVVZjSBKnUs"
@@ -11,6 +11,9 @@ notion = Client(auth=notion_secret)
 
 # Create your views here.
 def home(request):
+    return render(request, "index.html")
+
+def post_blurb(request, start_index, end_index):
     kanban = notion.databases.query(kanban_id, 
         filter={
             "property": "Status",
@@ -24,7 +27,13 @@ def home(request):
         post = BlogPost(page["id"])
         blog_blurbs.append(post.get_blurb())
 
-    return render(request, "index.html", {"blogs": blog_blurbs})
+    # Clean up weird request params
+    if start_index:
+        return HttpResponseBadRequest("start_index cannot exceed number of articles.")
+    if end_index > len(blog_blurbs):
+        end_index = len(blog_blurbs)
+
+    return JsonResponse(blog_blurbs[start_index:end_index], safe=False)
 
 def post_page(request, post_id):
     post = BlogPost(post_id)
