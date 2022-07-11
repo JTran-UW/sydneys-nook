@@ -45,7 +45,61 @@ body {
 }
 
 .bordered {
-    border: 4px solid black;
+    border: 3px solid black;
+}
+
+/**
+* Header styles
+*/
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 20px;
+    height: 70px;
+}
+
+header * {
+    font-family: YoungSerif;
+}
+
+header h2 {
+    font-size: 28px;
+}
+
+header p {
+    font-size: 16px;
+}
+
+#links {
+    border: none;
+    outline: none;
+    font-size: 16px;
+    background-color: transparent;
+    transition-duration: 0.3s;
+    padding: 3px 5px;
+    cursor: pointer;
+}
+
+#links:hover {
+    background-color: rgb(233, 233, 233)
+}
+
+#share {
+    display: flex;
+    align-items: center;
+    padding: 3px 10px 3px 5px;
+    cursor: pointer;
+    transition-duration: 0.3s;
+}
+
+#share:hover {
+    background-color: rgb(233, 233, 233)
+}
+
+#share * {
+    margin: 0px 4px;
 }
 
 /**
@@ -60,8 +114,8 @@ Content styles
 
 #post > * {
     opacity: 0;
-    max-width: 850px;
-    width: 75%;
+    max-width: 750px;
+    width: 70%;
     margin: 10px auto;
 }
 
@@ -160,7 +214,6 @@ Articles styles
     box-sizing: border-box;
     outline: none;
     font-family: YoungSerif;
-    border-bottom: none;
 }
 
 #search-bar::placeholder {
@@ -169,6 +222,8 @@ Articles styles
 
 .post-link {
     cursor: pointer;
+    opacity: 0;
+    border-top: none;
 }
 
 .post-link-title {
@@ -177,7 +232,7 @@ Articles styles
 }
 
 .post-link-header {
-    border-bottom: 4px solid black;
+    border-bottom: 3px solid black;
     padding: 0px 28px;
     display: flex;
     justify-content: space-between;
@@ -210,49 +265,4 @@ Articles styles
     transition-duration: 0.3s;
     opacity: 0;
     color: white;
-}
-
-/**
-Article styles
-*/
-
-#article {
-    width: 0px;
-    height: 0px;
-    position: absolute;
-    background-color: black;
-    color: white;
-    opacity: 0.2;
-    overflow: hidden;
-}
-
-#article > * {
-    opacity: 0;
-}
-
-#article > div {
-    margin: 20px 30%;
-}
-
-#article img {
-    display: block;
-    margin-right: auto;
-    margin-left: auto;
-}
-
-#close-article {
-    position: absolute;
-    top: 50px;
-    left: 50px;
-    padding: 20px;
-    cursor: pointer;
-    transition-duration: 0.3s;
-    border: 3px solid transparent;
-    border-radius: 50%;
-    --ggs: 2;
-}
-
-#close-article:hover {
-    border-color: white;
-    border-radius: 50%;
 }

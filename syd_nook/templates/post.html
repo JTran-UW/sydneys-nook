@@ -1,7 +1,22 @@
-{% extends 'base.html' %}
+{% extends 'header.html' %}
+{% load static %}
 
-{% block content %}
-    <h1>{{ title }}</h1>
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'poststyles.css' %}">
+{% endblock %}
 
-    {{ post|safe }}
+{% block body %}
+    <div id="blog">
+        <img id="top-pic" src="{{ thumbnail }}">
+        <h1>{{ title }}</h1>
+        <p>{{ date_edited|date:"F d, Y" }}</p>
+
+        {{ post|safe }}
+    </div>
+
+    <script>
+        $("body").animate({
+            opacity: 1
+        });
+    </script>
 {% endblock %}

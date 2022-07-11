@@ -1,8 +1,14 @@
 const delay = 250;
 const duration = 1000;
-const leftFr = 7;
-const rightFr = 6;
+const leftFr = 6;
+const rightFr = 5;
 const screenRatio = leftFr * 100 / (leftFr + rightFr);
+
+let queryRequestString = "";
+
+let maxArticlesReached = false;
+let startArticleIndex = 0;
+const articleLoadNum = 5;
 
 $(function() {
     // Set screen ratio
@@ -11,74 +17,85 @@ $(function() {
     });
 
     // Fetch articles and put them in the DOM, then show everything
-    loadLinks(0, 10).then(() => {
-        const postChildren = $("#post").children();
+    loadLinks(startArticleIndex, startArticleIndex + articleLoadNum).then(() => {
         revealElems($("body"));
-        revealElems(postChildren);
+        revealElems($("#post").children());
     });
 });
+
+function checkScroll(e) {
+    let links = $(e)
+    let reachedTop = links[0].scrollHeight - links.scrollTop() === links.outerHeight();
+
+    if (reachedTop && !maxArticlesReached) {
+        startArticleIndex += articleLoadNum;
+
+        loadLinks(startArticleIndex, startArticleIndex + articleLoadNum);
+    }
+}
 
 function loadLinks(start_index, end_index) {
     return new Promise((resolve, reject) => {
 
         // Get all articles
-        fetch(window.location + "blog/blurb/" + start_index + "-" + end_index)
+        fetch(window.location + "blog/blurb/" + start_index + "-" + end_index + "?query=" + queryRequestString)
         .then(response => response.json())
-        .then(articles => {
+        .then(data => {
+            // Update max articles reached
+            maxArticlesReached = data["maxReached"];
+
+            articles = data["blurbs"];
+            let cards = [];
             for (let i = 0; i < articles.length; i++)
             {
                 let a = articles[i];
                 
                 // Create card wrapper
-                let card = $("<div>").attr({
-                    onclick: "javascript: loadPost(this)",
-                    id: a.id
-                }).addClass("bordered post-link");
-                
-                // Create header
-                let date = new Date(a.date_edited);
-                let header = $("<section>").addClass("post-link-header");
-                header.append($("<h2>").addClass("post-link-title").html(a.title));
-                header.append($("<p>").addClass("young-serif").html(date.toDateString()));
-                card.append(header);
+                let card = createCard(a.id, a.date_edited, a.title, a.thumbnail, a.peek);
 
-                // Add thumbnail
-                card.append(
-                    $("<div>").addClass("post-link-tn").css({
-                        "background-image": "url(" + a.thumbnail + ")"
-                    }).append(
-                        $("<p>").html(a.peek)
-                    )
-                );
-                
                 // Append it to the links
                 $("#post-links").append(card);
+                cards.push(card);
             }
-            resolve(); // Resolve promise
+            revealElems(cards);
+            resolve(data); // Resolve promise
         });
-    })
+    });
 }
 
-function loadPost(postLinkElem) {
-    // Get content
-    fetch(window.location + "blog/content/" + postLinkElem.id)
-    .then(response => response.json())
-    .then(data => {
-        const bodyChildren = $("#post-body").children();
-        bodyChildren.css({
-            "opacity": 0,
-        });
+function createCard(id, dateEdited, title, thumbnail, peek) {
+    // Create card wrapper
+    let card = $("<div>").attr({
+        onclick: "javascript: loadPostPage(this);",
+        id: id
+    }).addClass("bordered post-link");
+    
+    // Create header
+    let date = new Date(dateEdited);
+    let dateString = date.toLocaleDateString("en-us", {
+        month: "long",
+        day: "numeric",
+        year: "numeric"
+    })
+    let header = $("<section>").addClass("post-link-header");
+    header.append($("<h2>").addClass("post-link-title").html(title));
+    header.append($("<p>").addClass("young-serif").html(dateString));
+    card.append(header);
 
-        let date = new Date(data["date_edited"]);
-        let dateString = date.toDateString();
+    // Add thumbnail
+    card.append(
+        $("<div>").addClass("post-link-tn").css({
+            "background-image": "url(" + thumbnail + ")"
+        }).append(
+            $("<p>").html(peek)
+        )
+    );
 
-        // Put this data in the blog
-        $("#post-title").html(data["title"]);
-        $("#post-date").html(dateString);
-        $("#post-content").html(data["post"])
+    return card;
+}
 
-        revealElems(bodyChildren);
-    });
+function loadPostPage(elem) {
+    window.location = "blog/" + elem.id;
 }
 
 function revealElems(elems) {
@@ -95,62 +112,15 @@ function revealElems(elems) {
     }
 }
 
-function expandPost(button) {
-    // Make other links unclickable
-    $("#post-links").css({
-        "pointer-events": "none",
-    });
+$(document).on("keypress", "#search-bar", function(e) {
+    if (e.which == 13)
+    {
+        loadQuery();
+    }
+});
 
-    // Change button properties
-    $(button).removeAttr("onclick");
-    let icon = $(button).children()[0];
-    $(icon).removeClass("gg-arrows-expand-left").addClass("gg-minimize-alt");
-
-    // Animate the post wrapper to fill the screen
-    let post = $("#post");
-    let postClone = post.clone();
-    postClone.attr("id", "post-clone");
-    postClone.prependTo("body");
-    post.css({
-        "position": "absolute",
-        "z-index": 99,
-        "width": screenRatio + "vw",
-        "height": "100%"
-    });
-    post.animate({
-        "width": "100%",
-    }, 800);
-
-    // Remove content of clone for wrapping issues
-    $("#post-content").html("");
-
-    $(button).attr("onclick", "javascript: closePost(this);");
-}
-
-function closePost(button) {
-    // Change button properties
-    $(button).removeAttr("onclick");
-    let icon = $(button).children()[0];
-    $(icon).removeClass("gg-minimize-alt").addClass("gg-arrows-expand-left");
-
-    let delay = 800;
-    let post = $("#post");
-    post.animate({
-        "width": screenRatio + "vw",
-    }, delay);
-    setTimeout(() => {
-        post.css({
-            "position": "relative",
-            "height": "auto",
-        });
-        $("#post-clone").remove();
-        
-        // Reset button click listener
-        $(button).attr("onclick", "javascript: expandPost(this);");
-    
-        // Reset post links
-        $("#post-links").css({
-            "pointer-events": "auto",
-        });
-    }, delay);
+function loadQuery() {
+    $(".post-link").remove();
+    queryRequestString = $("#search-bar").val();
+    loadLinks(0, 5);
 }

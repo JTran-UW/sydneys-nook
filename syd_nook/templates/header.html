@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <link href='https://css.gg/share.css' rel='stylesheet'>
+
+    {% block extra_head %}
+    {% endblock %}
+{% endblock %}
+
+{% block content %}
+    <header>
+        <select id="links" onChange="window.location.href=this.value">
+            <option value="{% url 'home' %}">Home</option>
+            <option value="{% url 'about' %}">About</option>
+        </select>
+
+        <a href="{% url 'home' %}">
+            <h2>Sydney's Nook</h2>
+        </a>
+
+        <div id="share">
+            <p>Share</p>
+            <i class="gg-share"></i>
+        </div>
+    </header>
+
+    {% block body %}
+    {% endblock %}
+
+{% endblock %}
