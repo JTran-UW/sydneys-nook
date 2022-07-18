@@ -4,7 +4,7 @@ Font
 
 @font-face {
     font-family: YoungSerif;
-    src: url("YoungSerif-Regular.otf");
+    src: url("../YoungSerif-Regular.otf");
 }
 
 .young-serif {
@@ -49,60 +49,6 @@ body {
 }
 
 /**
-* Header styles
-*/
-
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0px 20px;
-    height: 70px;
-}
-
-header * {
-    font-family: YoungSerif;
-}
-
-header h2 {
-    font-size: 28px;
-}
-
-header p {
-    font-size: 16px;
-}
-
-#links {
-    border: none;
-    outline: none;
-    font-size: 16px;
-    background-color: transparent;
-    transition-duration: 0.3s;
-    padding: 3px 5px;
-    cursor: pointer;
-}
-
-#links:hover {
-    background-color: rgb(233, 233, 233)
-}
-
-#share {
-    display: flex;
-    align-items: center;
-    padding: 3px 10px 3px 5px;
-    cursor: pointer;
-    transition-duration: 0.3s;
-}
-
-#share:hover {
-    background-color: rgb(233, 233, 233)
-}
-
-#share * {
-    margin: 0px 4px;
-}
-
-/**
 Content styles
 */
 
@@ -128,19 +74,19 @@ Content styles
     font-size: 52px;
 }
 
-#post-body {
+#home-body {
     margin-top: 75px;
 }
 
-#post-body h2 {
+#home-body h2 {
     font-size: 36px;
 }
 
-#post-body h3 {
+#home-body h3 {
     font-size: 28px;
 }
 
-#post-body p {
+#home-body p {
     font-size: 25px;
     line-height: 36px;
 }
@@ -265,4 +211,22 @@ Articles styles
     transition-duration: 0.3s;
     opacity: 0;
     color: white;
+}
+
+#link-footer {
+    border-top: none;
+    padding: 24px 28px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+#loading-posts {
+    display: none;
+}
+
+#link-footer h2 {
+    margin: 0px;
+    margin-left: 20px;
+    font-size: 32px;
 }

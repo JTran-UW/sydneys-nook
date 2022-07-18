@@ -13,19 +13,22 @@ notion_secret = "secret_Tch7KJPv1hUom2vXB9CnZMk9u6fo9XbKNVVZjSBKnUs"
 notion = Client(auth=notion_secret)
 
 class BlogPost:
-    def __init__(self, post_id: str):
+    def __init__(self, post_id: str, is_thumbnail: bool = True, ):
         """
         Blog post object
 
         :param post_id: ID of post
+        :kwarg is_thumbnail: option to add thumbnail (default: true)
         """
         self.id: str = post_id
         page: dict = notion.pages.retrieve(self.id)
         blocks_json: list[dict] = notion.blocks.children.list(post_id)["results"]
 
-        self.title: str = page["properties"]["Name"]["title"][0]["plain_text"]
-        self.description: str = page["properties"]["Description"]["rich_text"][0]["plain_text"]
-        self.thumbnail: str = page["properties"]["Thumbnail"]["files"][0]["file"]["url"]
+        self.title: str = Block._parse_rich_text(page["properties"]["Name"]["title"], as_html=False)
+        self.description: str = Block._parse_rich_text(page["properties"]["Description"]["rich_text"], as_html=False)
+        if is_thumbnail:
+            self.thumbnail: str = page["properties"]["Thumbnail"]["files"][0]["file"]["url"]
+            self.thumbnail_alt: str = Block._parse_rich_text(page["properties"]["Thumbnail Alt"]["rich_text"], as_html=False)
         self.status: str = page["properties"]["Status"]["select"]["name"]
         self.date_edited: datetime.date = datetime.datetime.strptime(page["last_edited_time"], "%Y-%m-%dT%H:%M:%S.%fZ")
         self.blocks: list[Block] = self._parse_blocks(blocks_json)
@@ -44,7 +47,8 @@ class BlogPost:
             "id": self.id,
             "date_edited": self.date_edited,
             "peek": self.description,
-            "thumbnail": self.thumbnail
+            "thumbnail": self.thumbnail,
+            "thumbnail_alt": self.thumbnail_alt
         }
 
     def get_post_as_html(self):

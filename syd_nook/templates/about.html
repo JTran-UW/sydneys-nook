@@ -1,5 +1,28 @@
-{% extends 'base.html' %}
+{% extends 'header.html' %}
 
 {% block content %}
+    <header>
+        <select id="links" onChange="window.location.href=window.location.origin + this.value">
+            <option>Navigate</option>
+            <option value="{% url 'home' %}">Home</option>
+            <option value="{% url 'about' %}">About</option>
+        </select>
+
+        <a href="{% url 'home' %}">
+            <h2>Sydney's Nook</h2>
+        </a>
+
+        <div id="share">
+            <p>Share</p>
+            <i class="gg-share"></i>
+        </div>
+    </header>
+
     <h1>About me</h1>
+
+    <script>
+        $("body").animate({
+            opacity: 1
+        }, 800);
+    </script>
 {% endblock %}

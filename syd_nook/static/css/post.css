@@ -1,0 +1,169 @@
+body {
+    display: block !important;
+}
+
+p {
+    font-size: 22px;
+}
+
+
+/**
+Header styles
+*/
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 20px;
+}
+
+header * {
+    font-family: YoungSerif;
+}
+
+header h2 {
+    font-size: 28px;
+}
+
+header p {
+    font-size: 16px;
+}
+
+#links {
+    border: none;
+    outline: none;
+    font-size: 16px;
+    background-color: transparent;
+    transition-duration: 0.3s;
+    padding: 3px 5px;
+    cursor: pointer;
+}
+
+#links:hover {
+    background-color: rgb(233, 233, 233)
+}
+
+#share {
+    display: flex;
+    align-items: center;
+    padding: 3px 10px 3px 5px;
+    cursor: pointer;
+    transition-duration: 0.3s;
+}
+
+#share:hover {
+    background-color: rgb(233, 233, 233)
+}
+
+#share * {
+    margin: 0px 4px;
+}
+
+
+#share {
+    position: relative;
+}
+
+#share-popup {
+    position: absolute;
+    display: none;
+    border: 1px solid black;
+    padding: 10px;
+    bottom: -70px;
+    right: 0px;
+}
+
+#share-popup * {
+    font-family: Lato;
+    margin: 0px;
+}
+
+#share-popup button {
+    --ggs: 0.75;
+    border-radius: 3px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+#share-popup button:active {
+    background-color: rgb(206, 206, 206);
+}
+
+#share-url {
+    padding: 5px;
+    font-size: 16px;
+    border-radius: 3px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border: 1px solid black;
+}
+
+/**
+Post styles
+*/
+
+#body {
+    max-width: 750px;
+    width: 90%;
+    margin: 20px auto;
+    padding: 10px 40px;
+    line-height: 36px;
+}
+
+#body * {
+    text-align: center;
+}
+
+img {
+    display: block;
+    margin: 0px auto;
+}
+
+#thumbnail {
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+#post-title {
+    font-size: 42px;
+}
+
+#post-date {
+    font-family: YoungSerif;
+    font-size: 25px;
+}
+
+#post-content * {
+    font-family: Lato;
+    text-align: left;
+    font-size: 22px;
+}
+
+#post-content h1 * {
+    font-size: 30px;
+}
+
+#post-content h2 * {
+    font-size: 26px;
+}
+
+#post-content h3 * {
+    font-size: 24px;
+}
+
+#post-content a {
+    text-decoration: underline;
+}
+
+#post-content table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#post-content td {
+    border: 1px solid black;
+    padding: 10px;
+}

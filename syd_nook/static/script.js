@@ -36,6 +36,10 @@ function checkScroll(e) {
 
 function loadLinks(start_index, end_index) {
     return new Promise((resolve, reject) => {
+        // Show loading gif
+        $("#loading-posts").css({
+            display: "flex",
+        });
 
         // Get all articles
         fetch(window.location + "blog/blurb/" + start_index + "-" + end_index + "?query=" + queryRequestString)
@@ -51,19 +55,25 @@ function loadLinks(start_index, end_index) {
                 let a = articles[i];
                 
                 // Create card wrapper
-                let card = createCard(a.id, a.date_edited, a.title, a.thumbnail, a.peek);
+                let card = createCard(a.id, a.date_edited, a.title, a.thumbnail, a.thumbnail_alt, a.peek);
 
                 // Append it to the links
-                $("#post-links").append(card);
+                $("#link-wrapper").append(card);
                 cards.push(card);
             }
             revealElems(cards);
+
+            // Remove loading gif
+            $("#loading-posts").css({
+                display: "none",
+            });
+
             resolve(data); // Resolve promise
         });
     });
 }
 
-function createCard(id, dateEdited, title, thumbnail, peek) {
+function createCard(id, dateEdited, title, thumbnail, thumbnail_alt, peek) {
     // Create card wrapper
     let card = $("<div>").attr({
         onclick: "javascript: loadPostPage(this);",
@@ -86,6 +96,8 @@ function createCard(id, dateEdited, title, thumbnail, peek) {
     card.append(
         $("<div>").addClass("post-link-tn").css({
             "background-image": "url(" + thumbnail + ")"
+        }).attr({
+            "title": thumbnail_alt
         }).append(
             $("<p>").html(peek)
         )

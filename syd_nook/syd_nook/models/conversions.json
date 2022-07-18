@@ -1,14 +1,14 @@
 {
     "heading_1": {
-        "html": "h2",
+        "html": "h1",
         "block_type": "text"
     },
     "heading_2": {
-        "html": "h3",
+        "html": "h2",
         "block_type": "text"
     },
     "heading_3": {
-        "html": "h4",
+        "html": "h3",
         "block_type": "text"
     },
     "paragraph": {

@@ -3,26 +3,26 @@
 {% load static %}
 
 {% block head %}
+    <title>{{ Name }}</title>
     <link href='https://css.gg/arrow-left.css' rel='stylesheet'>
     <link href='https://css.gg/search.css' rel='stylesheet'>
     <link href='https://css.gg/arrows-expand-left.css' rel='stylesheet'>
     <link href='https://css.gg/minimize-alt.css' rel='stylesheet'>
     <script src="{% static 'script.js' %}"></script>
+
+    <meta tag="description" content="{{ description }}">
 {% endblock %}
 
 {% block content %}
     <div id="post">
-        <h1 id="logo">Sydney's Nook</h1>
-        <p id="subline">A room of my own</p>
+        <h1 id="logo">{{ Name }}</h1>
+        <p id="subline">{{ Subtitle }}</p>
 
-        <section id="post-body">
-            <h2 id="post-title">The Nook Opens</h2>
-            <h3 id="post-date">June 20, 2022</h3>
-            <div id="post-content">
-                <p>I resolved to start writing.  Every day, every week, every year--it didn’t matter, just write.  The only thing I knew that would keep me accountable was publicity, an audience.  Just knowing one person could happen upon my internet pitstop keeps the words flowing from my little desk in Seattle.
-
-                    <br><br>The subline is a reference to Virgina Woolf’s novel A Room of One’s Own.  It concerns a woman’s need for independent space--physical, mental, emotional--to write and express herself.  In this digital world, I figure a website, an online room of my own, only makes sense.
-                </p>
+        <section id="home-body">
+            <h2 id="home-title">{{ title }}</h2>
+            <h3 id="home-date">{{ date_edited|date:"F d, Y" }}</h3>
+            <div id="home-content">
+                {{ content|safe }}
             </div>
         </section>
     </div>
@@ -31,6 +31,13 @@
         <div id="search">
             <i id="search-icon" class="gg-search" onclick="loadQuery()"></i>
             <input id="search-bar" class="bordered" placeholder="Search" />
+        </div>
+
+        <div id="link-wrapper"></div>
+
+        <div class="bordered" id="link-footer">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a3/Lightness_rotate_36f_cw.gif?20110914212036" id="loading-posts" height="30px"/>
+            <h2 class="post-link-title">You've reached the end.</h2>
         </div>
     </div>
 {% endblock %}

@@ -46,6 +46,47 @@ class Block(ABC):
 
         return f"<{self.elem_type}{prop_string}>{self.content}</{self.elem_type}>"
 
+    @staticmethod
+    def _parse_rich_text(rich_text: list[dict], as_html: bool = True):
+        """
+        Parse lists of rich text
+
+        :param rich_text: rich text list
+        :param as_html: return text as html (default: true)
+        :returns: string of rich_text
+        """
+        result = list()
+
+        for text in rich_text:
+            content = text["plain_text"]
+
+            if as_html:
+                annotations = text["annotations"]
+
+                annotation_tags = {
+                    "bold": "strong",
+                    "italic": "em",
+                    "strikethrough": "del",
+                    "underline": "u",
+                    "code": "code",
+                }
+                
+                for annotation in annotation_tags:
+                    tag = annotation_tags[annotation]
+
+                    if annotations[annotation]:
+                        content = f"<{tag}>{content}</{tag}>"
+                
+                href = text.get("href")
+                if type(href) == str:
+                    content = f"<a href={href} target='_blank'>{content}</a>"
+                else:
+                    color = annotations["color"]
+                    content = f"<span style='color: {color};'>{content}</span>"
+
+            result.append(content)
+        return "".join(result)
+
 class TextBlock(Block):
     def __init__(self, block: dict):
         """
@@ -61,19 +102,7 @@ class TextBlock(Block):
             rich_text: dict = dict()
             self.content: str = ""
         else:
-            rich_text: dict = rich_text[0]
-            self.content: str = rich_text["plain_text"]
-
-        # Get text annotations
-        self.annotations: dict = rich_text.get("annotations", {})
-
-        # Get href if any, and add it as property if appropriate
-        self.href: str = rich_text.get("href", "")
-        if type(self.href) == str:
-            if len(self.href) > 0:
-                self.properties["href"] = self.href
-                self.properties["target"] = "_blank"
-                self.elem_type = "a"
+            self.content: str = self._parse_rich_text(rich_text)
 
 class ImageBlock(Block):
     def __init__(self, block: dict):
@@ -84,7 +113,13 @@ class ImageBlock(Block):
         """
         super(ImageBlock, self).__init__(block)
 
+        print(block)
         self.src: str = block["image"]["file"]["url"]
+        self.alt: str = self._parse_rich_text(
+            block["image"].get("caption", []), 
+            as_html=False
+        )
+        self.properties["alt"] = self.alt
         self.properties["src"] = self.src
         self.content = ""
 
@@ -115,7 +150,7 @@ class TableRowBlock(Block):
         cells = block["table_row"]["cells"]
         for cell in cells:
             if len(cell) > 0:
-                table_data = cell[0]["plain_text"]
+                table_data = self._parse_rich_text(cell)
                 self.content.append(table_data)
             else:
                 self.content.append("")

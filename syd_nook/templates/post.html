@@ -1,22 +1,53 @@
-{% extends 'header.html' %}
+{% extends 'base.html' %}
 {% load static %}
 
-{% block extra_head %}
-    <link rel="stylesheet" href="{% static 'poststyles.css' %}">
+{% block head %}
+    <link href='https://css.gg/share.css' rel='stylesheet'>
+    <link href='https://css.gg/copy.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{% static 'css/post.css' %}">
+    <title>{{ title }}</title>
+    
+    <script src="{% static 'post.js' %}"></script>
+
+    <meta name="description" content="{{ description }}"/>
 {% endblock %}
 
-{% block body %}
-    <div id="blog">
-        <img id="top-pic" src="{{ thumbnail }}">
-        <h1>{{ title }}</h1>
-        <p>{{ date_edited|date:"F d, Y" }}</p>
+{% block content %}
+    <header>
+        <select id="links" onChange="window.location.href=window.location.origin + this.value">
+            <option>Navigate</option>
+            <option value="{% url 'home' %}">Home</option>
+            <option value="{% url 'about' %}">About</option>
+        </select>
 
-        {{ post|safe }}
+        <a href="{% url 'home' %}">
+            <h2>Sydney's Nook</h2>
+        </a>
+
+        <div id="share" onclick="showPopup()">
+            <p>Share</p>
+            <i class="gg-share"></i>
+
+            <div id="share-popup">
+                <input type="text" id="share-url">
+                <button onclick="copyUrl()"><i class="gg-copy"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <div id="body">
+        <img src="{{ thumbnail }}" alt="{{ thumbnail_alt }}" id="thumbnail">
+        <h1 id="post-title">{{ title }}</h1>
+        <p id="post-date">{{ date_edited|date:"F d, Y" }}</p>
+
+        <div id="post-content">
+            {{ post|safe }}
+        </div>
     </div>
 
     <script>
         $("body").animate({
             opacity: 1
-        });
+        }, 800);
     </script>
 {% endblock %}
