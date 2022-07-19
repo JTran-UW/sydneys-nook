@@ -72,6 +72,7 @@ header p {
     padding: 10px;
     bottom: -70px;
     right: 0px;
+    background-color: white;
 }
 
 #share-popup * {
@@ -120,6 +121,7 @@ Post styles
 img {
     display: block;
     margin: 0px auto;
+    max-width: 100%;
 }
 
 #thumbnail {
@@ -128,7 +130,9 @@ img {
 }
 
 #post-title {
-    font-size: 42px;
+    font-size: 52px;
+    line-height: 52px;
+    margin: 34px 0px;
 }
 
 #post-date {
@@ -166,4 +170,14 @@ img {
 #post-content td {
     border: 1px solid black;
     padding: 10px;
+}
+
+/**
+Mobile styles
+*/
+
+@media (max-width: 700px) {
+    #body {
+        padding: 10px 10px;
+    }
 }

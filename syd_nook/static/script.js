@@ -89,7 +89,7 @@ function createCard(id, dateEdited, title, thumbnail, thumbnail_alt, peek) {
     })
     let header = $("<section>").addClass("post-link-header");
     header.append($("<h2>").addClass("post-link-title").html(title));
-    header.append($("<p>").addClass("young-serif").html(dateString));
+    header.append($("<p>").addClass("post-link-date").addClass("young-serif").html(dateString));
     card.append(header);
 
     // Add thumbnail
@@ -136,3 +136,32 @@ function loadQuery() {
     queryRequestString = $("#search-bar").val();
     loadLinks(0, 5);
 }
+
+function showArticlesTab() {
+    $("body").animate({
+        "left": "-100%"
+    });
+    $("#menu").animate({
+        "margin-left": "100%"
+    });
+}
+
+function showHomeTab() {
+    $("body").animate({
+        "left": "0%"
+    });
+    $("#menu").animate({
+        "margin-left": "0%"
+    });
+}
+
+$(document).resize(function() {
+    if ($(document).width() > 1440) {
+        $("body").css({
+            "left": "0%"
+        });
+        $("#menu").css({
+            "margin-left": "0%"
+        })
+    }
+});

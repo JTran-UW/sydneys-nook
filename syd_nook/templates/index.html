@@ -4,10 +4,10 @@
 
 {% block head %}
     <title>{{ Name }}</title>
-    <link href='https://css.gg/arrow-left.css' rel='stylesheet'>
     <link href='https://css.gg/search.css' rel='stylesheet'>
-    <link href='https://css.gg/arrows-expand-left.css' rel='stylesheet'>
-    <link href='https://css.gg/minimize-alt.css' rel='stylesheet'>
+    <link href='https://css.gg/home-alt.css' rel='stylesheet'>
+    <link href='https://css.gg/readme.css' rel='stylesheet'>
+    <link href="{% static 'css/index.css' %}" rel="stylesheet">
     <script src="{% static 'script.js' %}"></script>
 
     <meta tag="description" content="{{ description }}">
@@ -18,7 +18,7 @@
         <h1 id="logo">{{ Name }}</h1>
         <p id="subline">{{ Subtitle }}</p>
 
-        <section id="home-body">
+        <section id="body">
             <h2 id="home-title">{{ title }}</h2>
             <h3 id="home-date">{{ date_edited|date:"F d, Y" }}</h3>
             <div id="home-content">
@@ -39,5 +39,14 @@
             <img src="https://upload.wikimedia.org/wikipedia/commons/a/a3/Lightness_rotate_36f_cw.gif?20110914212036" id="loading-posts" height="30px"/>
             <h2 class="post-link-title">You've reached the end.</h2>
         </div>
+    </div>
+
+    <div id="menu">
+        <button class="bordered borderless-right" onclick="showHomeTab()">
+            <i class="gg-home-alt"></i>
+        </button>
+        <button class="bordered" onclick="showArticlesTab()">
+                <i class="gg-readme"></i>
+        </button>
     </div>
 {% endblock %}

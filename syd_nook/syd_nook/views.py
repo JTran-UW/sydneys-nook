@@ -23,7 +23,7 @@ def get_main_info():
     for result in main:
         name = result["properties"]["Name"]["title"][0]["plain_text"]
         rich_text = result["properties"]["Content"]["rich_text"]
-        content = Block._parse_rich_text(rich_text, as_html=False)
+        content = Block.parse_rich_text(rich_text, as_html=False)
         
         "".join([text["plain_text"] for text in rich_text])
 
@@ -130,7 +130,8 @@ def post_page(request, post_id):
             "date_edited": post.date_edited,
             "post": post.get_post_as_html()
         }
+        main_info = get_main_info()
 
-        return render(request, "post.html", post_info)
+        return render(request, "post.html", {**post_info, **main_info})
     else:
         raise Http404

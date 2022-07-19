@@ -24,11 +24,11 @@ class BlogPost:
         page: dict = notion.pages.retrieve(self.id)
         blocks_json: list[dict] = notion.blocks.children.list(post_id)["results"]
 
-        self.title: str = Block._parse_rich_text(page["properties"]["Name"]["title"], as_html=False)
-        self.description: str = Block._parse_rich_text(page["properties"]["Description"]["rich_text"], as_html=False)
+        self.title: str = Block.parse_rich_text(page["properties"]["Name"]["title"], as_html=False)
+        self.description: str = Block.parse_rich_text(page["properties"]["Description"]["rich_text"], as_html=False)
         if is_thumbnail:
             self.thumbnail: str = page["properties"]["Thumbnail"]["files"][0]["file"]["url"]
-            self.thumbnail_alt: str = Block._parse_rich_text(page["properties"]["Thumbnail Alt"]["rich_text"], as_html=False)
+            self.thumbnail_alt: str = Block.parse_rich_text(page["properties"]["Thumbnail Alt"]["rich_text"], as_html=False)
         self.status: str = page["properties"]["Status"]["select"]["name"]
         self.date_edited: datetime.date = datetime.datetime.strptime(page["last_edited_time"], "%Y-%m-%dT%H:%M:%S.%fZ")
         self.blocks: list[Block] = self._parse_blocks(blocks_json)
