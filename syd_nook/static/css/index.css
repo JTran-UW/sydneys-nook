@@ -71,7 +71,7 @@ Articles styles
     margin: auto 0;
     left: 1.5rem;
     cursor: pointer;
-    --ggs: 2.2rem;
+    --ggs: 2;
 }
 
 #search-bar {
@@ -80,6 +80,7 @@ Articles styles
     width: 100%;
     box-sizing: border-box;
     outline: none;
+    -webkit-appearance: none;
     font-family: YoungSerif;
 }
 
@@ -148,7 +149,6 @@ Articles styles
     padding: 24px 28px;
     justify-content: center;
     align-items: center;
-    display: flex;
 }
 
 #loading-posts {
@@ -157,7 +157,6 @@ Articles styles
 
 #link-footer h2 {
     margin: 0px;
-    text-align: center;
     font-size: 1.3rem;
 }
 
@@ -206,6 +205,10 @@ Mobile styles
     #link-footer {
         border-bottom: 0px;
     }
+
+    #search-icon {
+        --ggs: 1.5;
+    }
 }
 
 @media (max-width: 700px){
@@ -216,5 +219,9 @@ Mobile styles
     #post > * {
         width: 90%;
         max-width: 90%;
+    }
+
+    #search-icon {
+        --ggs: 1.2;
     }
 }
