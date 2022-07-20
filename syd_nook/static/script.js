@@ -140,22 +140,24 @@ function loadQuery() {
 function showArticlesTab() {
     $("body").animate({
         "left": "-100%"
-    });
+    }, 800, "swing");
     $("#menu").animate({
         "margin-left": "100%"
-    });
+    }, 800, "swing");
 }
 
 function showHomeTab() {
     $("body").animate({
         "left": "0%"
-    });
+    }, 800, "swing");
     $("#menu").animate({
         "margin-left": "0%"
-    });
+    }, 800, "swing");
 }
 
 $(document).resize(function() {
+
+    console.log("what now")
     if ($(document).width() > 1440) {
         $("body").css({
             "left": "0%"

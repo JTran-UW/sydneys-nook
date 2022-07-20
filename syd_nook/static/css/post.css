@@ -2,11 +2,6 @@ body {
     display: block !important;
 }
 
-p {
-    font-size: 22px;
-}
-
-
 /**
 Header styles
 */
@@ -15,7 +10,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0px 20px;
+    padding: 0px 0.8rem;
 }
 
 header * {
@@ -23,20 +18,20 @@ header * {
 }
 
 header h2 {
-    font-size: 28px;
+    font-size: 1.16rem;
 }
 
 header p {
-    font-size: 16px;
+    font-size: 0.6rem;
 }
 
 #links {
     border: none;
     outline: none;
-    font-size: 16px;
+    font-size: 0.6rem;
     background-color: transparent;
     transition-duration: 0.3s;
-    padding: 3px 5px;
+    padding: 0.125rem 0.2rem;
     cursor: pointer;
 }
 
@@ -47,7 +42,7 @@ header p {
 #share {
     display: flex;
     align-items: center;
-    padding: 3px 10px 3px 5px;
+    padding: 0.125 0.4rem 0.125rem 0.2rem;
     cursor: pointer;
     transition-duration: 0.3s;
 }
@@ -57,7 +52,7 @@ header p {
 }
 
 #share * {
-    margin: 0px 4px;
+    margin: 0px 0.16rem;
 }
 
 
@@ -69,8 +64,8 @@ header p {
     position: absolute;
     display: none;
     border: 1px solid black;
-    padding: 10px;
-    bottom: -70px;
+    padding: 0.4rem;
+    bottom: -3rem;
     right: 0px;
     background-color: white;
 }
@@ -94,8 +89,8 @@ header p {
 }
 
 #share-url {
-    padding: 5px;
-    font-size: 16px;
+    padding: 0.2rem;
+    font-size: 0.6rem;
     border-radius: 3px;
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
@@ -109,9 +104,9 @@ Post styles
 #body {
     max-width: 750px;
     width: 90%;
-    margin: 20px auto;
-    padding: 10px 40px;
-    line-height: 36px;
+    margin: 0.8rem auto;
+    padding: 0.4rem 1.6rem;
+    line-height: 1.5rem;
 }
 
 #body * {
@@ -126,36 +121,36 @@ img {
 
 #thumbnail {
     width: 100%;
-    margin-bottom: 50px;
+    margin-bottom: 2rem;
 }
 
 #post-title {
-    font-size: 52px;
-    line-height: 52px;
-    margin: 34px 0px;
+    font-size: 2.1rem;
+    line-height: 2.1rem;
+    margin: 1.4rem 0px;
 }
 
 #post-date {
     font-family: YoungSerif;
-    font-size: 25px;
+    font-size: 1rem;
 }
 
 #post-content * {
     font-family: Lato;
     text-align: left;
-    font-size: 22px;
+    font-size: 0.9rem;
 }
 
 #post-content h1 * {
-    font-size: 30px;
+    font-size: 1.25rem;
 }
 
 #post-content h2 * {
-    font-size: 26px;
+    font-size: 1.1rem;
 }
 
 #post-content h3 * {
-    font-size: 24px;
+    font-size: 1rem;
 }
 
 #post-content a {
@@ -169,7 +164,7 @@ img {
 
 #post-content td {
     border: 1px solid black;
-    padding: 10px;
+    padding: 0.4rem;
 }
 
 /**
@@ -178,6 +173,14 @@ Mobile styles
 
 @media (max-width: 700px) {
     #body {
-        padding: 10px 10px;
+        padding: 0.4rem 0.4rem;
+    }
+
+    #share {
+        --ggs: 0.5;
+    }
+
+    #share-popup button {
+        --ggs: 0.5;
     }
 }

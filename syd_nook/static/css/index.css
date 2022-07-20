@@ -1,4 +1,13 @@
 /**
+Body
+*/
+
+body {
+    position: fixed;
+    overflow-x: hidden;
+}
+
+/**
 Content styles
 */
 
@@ -15,16 +24,16 @@ Content styles
 }
 
 #logo {
-    margin-top: 60px;
-    font-size: 84px;
+    margin-top: 2.5rem;
+    font-size: 3.5rem;
 }
 
 #subline {
-    font-size: 52px;
+    font-size: 2.2rem;
 }
 
 #body {
-    margin-top: 75px;
+    margin-top: 3rem;
 }
 
 #body a {
@@ -32,16 +41,15 @@ Content styles
 }
 
 #body h2 {
-    font-size: 36px;
+    font-size: 1.5rem;
 }
 
 #body h3 {
-    font-size: 28px;
+    font-size: 1.2rem;
 }
 
 #body p {
-    font-size: 25px;
-    line-height: 36px;
+    line-height: 1.5rem;
 }
 
 /**
@@ -61,14 +69,14 @@ Articles styles
     top: 0;
     bottom: 0;
     margin: auto 0;
-    left: 35px;
+    left: 1.5rem;
     cursor: pointer;
-    --ggs: 2.2;
+    --ggs: 2.2rem;
 }
 
 #search-bar {
-    padding: 10px 29px 10px 88px;
-    font-size: 45px;
+    padding: 0.4rem 1.2rem 0.4rem 3.6rem;
+    font-size: 1.8rem;
     width: 100%;
     box-sizing: border-box;
     outline: none;
@@ -86,7 +94,7 @@ Articles styles
 }
 
 .post-link-title {
-    font-size: 32px;
+    font-size: 1.3rem;
     margin: 20px 0px;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -149,8 +157,8 @@ Articles styles
 
 #link-footer h2 {
     margin: 0px;
-    margin-left: 20px;
-    font-size: 32px;
+    text-align: center;
+    font-size: 1.3rem;
 }
 
 /**
@@ -166,11 +174,10 @@ Mobile styles
 }
 
 #menu button {
-    padding: 30px;
+    padding: 1rem;
     cursor: pointer;
     outline: none;
     border-radius: 0px;
-    --ggs: 2;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -188,7 +195,7 @@ Mobile styles
     }
 
     #post {
-        padding-bottom: 40px;
+        padding-bottom: 1.6rem;
     }
 
     body {
