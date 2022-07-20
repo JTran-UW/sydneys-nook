@@ -33,6 +33,7 @@ header p {
     transition-duration: 0.3s;
     padding: 0.125rem 0.2rem;
     cursor: pointer;
+    color: black;
 }
 
 #links:hover {

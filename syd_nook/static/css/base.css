@@ -9,6 +9,7 @@ Font
 
 .young-serif {
     font-family: YoungSerif;
+    font-weight: normal;
 }
 
 /**
@@ -25,6 +26,7 @@ html {
 
 h1, h2, h3 {
     font-family: YoungSerif;
+    font-weight: normal;
 }
 
 a {
