@@ -149,14 +149,18 @@ Articles styles
     padding: 24px 28px;
     justify-content: center;
     align-items: center;
+    display: flex;
 }
 
 #loading-posts {
     display: none;
+    height: 1.25rem;
 }
 
 #link-footer h2 {
     margin: 0px;
+    margin-left: 10px;
+    max-width: min-content;
     font-size: 1.3rem;
 }
 

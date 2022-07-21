@@ -174,6 +174,7 @@ $(window).resize(function() {
 });
 
 $(window).on("orientationchange", function() {
+    console.log("test")
     if (isArticle) {
         $("body").css({
             "left": "-100%"

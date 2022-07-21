@@ -63,8 +63,9 @@ def about(request):
         "description": page.description,
         "post": page.get_post_as_html()
     }
+    main = get_main_info()
 
-    return render(request, "post.html", content)
+    return render(request, "post.html", {**content, **main})
 
 def post_blurb(request, start_index, end_index):
     query = request.GET.get("query", "")
