@@ -81,6 +81,8 @@ Articles styles
     box-sizing: border-box;
     outline: none;
     -webkit-appearance: none;
+    border-radius: 0px;
+    margin: 0px;
     font-family: YoungSerif;
 }
 
@@ -96,7 +98,7 @@ Articles styles
 
 .post-link-title {
     font-size: 1.3rem;
-    margin: 20px 0px;
+    margin: 0.9rem 0px;
     text-overflow: ellipsis;
     overflow: hidden;
     width: 100%;
@@ -110,7 +112,7 @@ Articles styles
 
 .post-link-header {
     border-bottom: 3px solid black;
-    padding: 0px 28px;
+    padding: 0px 1.2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -178,6 +180,7 @@ Mobile styles
 
 #menu button {
     padding: 1rem;
+    margin: 0px;
     cursor: pointer;
     outline: none;
     border-radius: 0px;

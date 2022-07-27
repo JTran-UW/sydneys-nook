@@ -42,7 +42,7 @@ body {
     font-size: 1rem;
     margin: 0px;
     display: grid;
-    height: 100vh;
+    height: 100%;
     opacity: 0;
     left: 0%;
     width: 100%;
@@ -50,6 +50,10 @@ body {
 
 .bordered {
     border: 3px solid black;
+}
+
+.bordered-thin {
+    border: 1px solid black;
 }
 
 

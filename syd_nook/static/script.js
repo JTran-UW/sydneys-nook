@@ -137,8 +137,6 @@ function loadQuery() {
     loadLinks(0, 5);
 }
 
-let isArticle = false;
-
 function showArticlesTab() {
     $("body").animate({
         "left": "-100%"
@@ -146,8 +144,6 @@ function showArticlesTab() {
     $("#menu").animate({
         "margin-left": "100%"
     }, 800, "swing");
-
-    isArticle = true;
 }
 
 function showHomeTab() {
@@ -157,37 +153,16 @@ function showHomeTab() {
     $("#menu").animate({
         "margin-left": "0%"
     }, 800, "swing");
-
-    isArticle = false;
 }
 
 $(window).resize(function() {
     // Check for resizing back to desktop
-    if ($(window).width() > 1440) {
+    if (screen.width > 1440) {
         $("body").css({
             "left": "0%"
         });
         $("#menu").css({
             "margin-left": "0%"
         })
-    }
-});
-
-$(window).on("orientationchange", function() {
-    console.log("test")
-    if (isArticle) {
-        $("body").css({
-            "left": "-100%"
-        });
-        $("#menu").css({
-            "margin-left": "100%"
-        });
-    } else {
-        $("body").css({
-            "left": "0%"
-        });
-        $("#menu").css({
-            "margin-left": "0%"
-        });
     }
 });
