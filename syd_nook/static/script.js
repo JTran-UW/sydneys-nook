@@ -171,17 +171,10 @@ $(window).on("orientationchange", function() {
     const isArticleTab = $("body").hasClass("slide-pos-left");
 
     if (isArticleTab) {
-        $("body").addClass("no-duration");
-        $("menu").addClass("no-duration");
-
         showHomeTab();
         setTimeout(() => {
             showArticlesTab();
         }, 300);
-
-
-        $("body").removeClass("no-duration");
-        $("menu").removeClass("no-duration");
     } else {
         showHomeTab();
     }
