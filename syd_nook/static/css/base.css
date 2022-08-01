@@ -69,6 +69,10 @@ body {
     border-bottom: 0px;
 }
 
+.no-duration {
+    transition-duration: none !important;
+}
+
 /**
 Scrollbar styles
 */
