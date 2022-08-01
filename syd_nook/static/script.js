@@ -1,4 +1,4 @@
-const delay = 250;
+const delay = 500;
 const duration = 1000;
 const leftFr = 6;
 const rightFr = 5;
@@ -9,6 +9,10 @@ let queryRequestString = "";
 let maxArticlesReached = false;
 let startArticleIndex = 0;
 const articleLoadNum = 5;
+
+const windowLoaded = false;
+
+let isShown = false;
 
 $(function() {
     // Set screen ratio
@@ -24,7 +28,6 @@ $(function() {
 });
 
 function checkScroll(e) {
-    let links = $(e)
     let reachedTop = links[0].scrollHeight - links.scrollTop() === links.outerHeight();
 
     if (reachedTop && !maxArticlesReached) {
@@ -75,10 +78,7 @@ function loadLinks(start_index, end_index) {
 
 function createCard(id, dateEdited, title, thumbnail, thumbnail_alt, peek) {
     // Create card wrapper
-    let card = $("<div>").attr({
-        onclick: "javascript: loadPostPage(this);",
-        id: id
-    }).addClass("bordered post-link");
+    let card = $("<div>").addClass("bordered post-link");
     
     // Create header
     let date = new Date(dateEdited);
@@ -103,11 +103,11 @@ function createCard(id, dateEdited, title, thumbnail, thumbnail_alt, peek) {
         )
     );
 
-    return card;
-}
-
-function loadPostPage(elem) {
-    window.location = "blog/" + elem.id;
+    let aWrapper = $("<a>").attr({
+        href: "blog/" + id
+    });
+    aWrapper.append(card);
+    return aWrapper;
 }
 
 function revealElems(elems) {
@@ -122,6 +122,10 @@ function revealElems(elems) {
             "opacity": 1,
         }, duration);
     }
+
+    setTimeout(() => {
+        isShown = true;
+    }, elems.length * duration)
 }
 
 $(document).on("keypress", "#search-bar", function(e) {
@@ -138,31 +142,40 @@ function loadQuery() {
 }
 
 function showArticlesTab() {
-    $("body").animate({
-        "left": "-100%"
-    }, 800, "swing");
-    $("#menu").animate({
-        "margin-left": "100%"
-    }, 800, "swing");
+    if (isShown)
+    {
+        $("body").addClass("slide-pos-left");
+        $("#menu").addClass("slide-margin-right");
+    }
 }
 
 function showHomeTab() {
-    $("body").animate({
-        "left": "0%"
-    }, 800, "swing");
-    $("#menu").animate({
-        "margin-left": "0%"
-    }, 800, "swing");
+    if (isShown)
+    {
+        $("body").removeClass("slide-pos-left");
+        $("#menu").removeClass("slide-margin-right");
+    }
 }
 
 $(window).resize(function() {
     // Check for resizing back to desktop
     if (screen.width > 1440) {
-        $("body").css({
-            "left": "0%"
-        });
-        $("#menu").css({
-            "margin-left": "0%"
-        })
+        showHomeTab();
+    }
+});
+
+/*
+I hate this gross ass workaround, but it'll make strange IOS styling issues work
+*/
+$(window).on("orientationchange", function() {
+    const isArticleTab = $("body").hasClass("slide-pos-left");
+
+    if (isArticleTab) {
+        showHomeTab();
+        setTimeout(() => {
+            showArticlesTab();
+        }, 300);
+    } else {
+        showHomeTab();
     }
 });

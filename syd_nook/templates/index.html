@@ -7,8 +7,8 @@
     <link href='https://css.gg/search.css' rel='stylesheet'>
     <link href='https://css.gg/home-alt.css' rel='stylesheet'>
     <link href='https://css.gg/readme.css' rel='stylesheet'>
-    <link href="{% static 'css/index.css' %}" rel="stylesheet">
     <script src="{% static 'script.js' %}"></script>
+    <link href="{% static 'css/index.css' %}" rel="stylesheet">
 
     <meta tag="description" content="{{ description }}">
 {% endblock %}
@@ -24,6 +24,8 @@
             <div id="home-content">
                 {{ content|safe }}
             </div>
+
+            <p>{{ SM_External|safe }}</p>
         </section>
     </div>
 
@@ -34,7 +36,6 @@
         </div>
 
         <div id="link-wrapper"></div>
-
         <div class="bordered" id="link-footer">
             <img src="https://upload.wikimedia.org/wikipedia/commons/a/a3/Lightness_rotate_36f_cw.gif?20110914212036" id="loading-posts"/>
             <h2 class="post-link-title">You've reached the end.</h2>

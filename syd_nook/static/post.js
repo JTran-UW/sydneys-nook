@@ -12,13 +12,14 @@ function showPopup() {
 
 function copyUrl() {
     let shareUrl = $("#share-url").val();
-    console.log(shareUrl);
     if (navigator.clipboard) {
         navigator.clipboard.writeText(shareUrl).then(() => {
             alert("Link copied to clipboard");
         });
     } else {
-        console.log("Browser not compatible");
+        $("#share-url").select();
+        document.execCommand('copy');
+        alert("Link copied to clipboard")
     }
 }
 

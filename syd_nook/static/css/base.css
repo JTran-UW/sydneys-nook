@@ -18,6 +18,7 @@ Universal styles
 
 html {
     font-size: 24px;
+    -webkit-text-size-adjust: 100%;
 }
 
 * {
@@ -41,7 +42,6 @@ i {
 body {
     font-size: 1rem;
     margin: 0px;
-    display: grid;
     height: 100%;
     opacity: 0;
     left: 0%;
