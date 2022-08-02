@@ -9,7 +9,11 @@
     
     <script src="{% static 'post.js' %}"></script>
 
-    <meta name="description" content="{{ description }}"/>
+    <meta name="description" content="{{ description }}" />
+    <meta property="og:title" content="{{ title }}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="{{ thumbnail }}" />
+    <meta property="og:description" content="{{ description }}" />
 {% endblock %}
 
 {% block content %}

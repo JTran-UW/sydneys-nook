@@ -90,6 +90,7 @@ Articles styles
 
 #search-bar::placeholder {
     color: black;
+    opacity: 1;
 }
 
 .post-link {

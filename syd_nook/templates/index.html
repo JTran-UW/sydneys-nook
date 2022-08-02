@@ -10,7 +10,10 @@
     <script src="{% static 'script.js' %}"></script>
     <link href="{% static 'css/index.css' %}" rel="stylesheet">
 
-    <meta tag="description" content="{{ description }}">
+    <meta name="description" content="{{ description }}">
+    <meta property="og:title" content="{{ Name }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="{{ description }}" />
 {% endblock %}
 
 {% block content %}
