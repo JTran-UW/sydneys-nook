@@ -5,9 +5,9 @@ from .models.Block import Block
 from django.http import Http404, HttpResponseBadRequest, JsonResponse
 
 # TODO Change this!
-notion_secret = "secret_Tch7KJPv1hUom2vXB9CnZMk9u6fo9XbKNVVZjSBKnUs"
-kanban_id = "2dad4cbc8e154024998e64c33d2548e9"
-main_id = "291e9f3499824f7b9acc02ce4f17f30f"
+notion_secret = "INSERT"
+kanban_id = "INSERT"
+main_id = "INSERT"
 
 notion = Client(auth=notion_secret)
 
