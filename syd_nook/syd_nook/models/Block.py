@@ -47,7 +47,7 @@ class Block(ABC):
         return f"<{self.elem_type}{prop_string}>{self.content}</{self.elem_type}>"
 
     @staticmethod
-    def parse_rich_text(rich_text: list[dict], as_html: bool = True):
+    def parse_rich_text(rich_text: list, as_html: bool = True):
         """
         Parse lists of rich text
 
@@ -123,7 +123,7 @@ class ImageBlock(Block):
         self.content = ""
 
 class TableBlock(Block):
-    def __init__(self, block: dict, rows: list[dict]):
+    def __init__(self, block: dict, rows: list):
         """
         Table block
 
@@ -132,7 +132,7 @@ class TableBlock(Block):
         """
         super(TableBlock, self).__init__(block)
 
-        self.rows: list[TableRowBlock] = [TableRowBlock(row_block) for row_block in rows]
+        self.rows: list = [TableRowBlock(row_block) for row_block in rows]
         self.content = "".join([row.get_as_html() for row in self.rows])
 
 class TableRowBlock(Block):
@@ -157,7 +157,7 @@ class TableRowBlock(Block):
         self.content = "".join(f"<td>{elem}</td>" for elem in self.content)
 
 class OrderedListBlock(Block):
-    def __init__(self, elems: list[dict]):
+    def __init__(self, elems: list):
         """
         Block of ordered list elements
 

@@ -22,7 +22,7 @@ class BlogPost:
         """
         self.id: str = post_id
         page: dict = notion.pages.retrieve(self.id)
-        blocks_json: list[dict] = notion.blocks.children.list(post_id)["results"]
+        blocks_json: list = notion.blocks.children.list(post_id)["results"]
 
         self.title: str = Block.parse_rich_text(page["properties"]["Name"]["title"], as_html=False)
         self.description: str = Block.parse_rich_text(page["properties"]["Description"]["rich_text"], as_html=False)
@@ -31,7 +31,7 @@ class BlogPost:
             self.thumbnail_alt: str = Block.parse_rich_text(page["properties"]["Thumbnail Alt"]["rich_text"], as_html=False)
         self.status: str = page["properties"]["Status"]["select"]["name"]
         self.date_edited: datetime.date = datetime.datetime.strptime(page["last_edited_time"], "%Y-%m-%dT%H:%M:%S.%fZ")
-        self.blocks: list[Block] = self._parse_blocks(blocks_json)
+        self.blocks: list = self._parse_blocks(blocks_json)
     
     def __str__(self):
         return self.title
@@ -59,15 +59,15 @@ class BlogPost:
         """
         return "".join([block.get_as_html() for block in self.blocks])
 
-    def _parse_blocks(self, blocks_json: list[dict]):
+    def _parse_blocks(self, blocks_json: list):
         """
         Parse through list of blocks as dict
 
         :param blocks_json: blocks as dict
         :returns: blocks as Block object
         """
-        result: list[Block] = list()
-        open_ol: list[dict] = list()
+        result: list = list()
+        open_ol: list = list()
 
         for ind, block in enumerate(blocks_json):
             is_list_open: bool = len(open_ol) > 0
