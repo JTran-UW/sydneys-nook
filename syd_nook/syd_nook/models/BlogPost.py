@@ -8,7 +8,7 @@ dirname = os.path.dirname(__file__)
 with open(os.path.join(dirname, "conversions.json")) as f:
     conversions_json = json.load(f)
 
-notion_secret = "secret_Tch7KJPv1hUom2vXB9CnZMk9u6fo9XbKNVVZjSBKnUs"
+notion_secret = os.environ["NOTION_SECRET"]
 
 notion = Client(auth=notion_secret)
 

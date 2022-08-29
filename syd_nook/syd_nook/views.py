@@ -3,11 +3,11 @@ from notion_client import Client
 from .models.BlogPost import BlogPost
 from .models.Block import Block
 from django.http import Http404, HttpResponseBadRequest, JsonResponse
+import os
 
-# TODO Change this!
-notion_secret = "INSERT"
-kanban_id = "INSERT"
-main_id = "INSERT"
+notion_secret = os.environ["NOTION_SECRET"]
+kanban_id = os.environ["KANBAN_ID"]
+main_id = os.environ["MAIN_ID"]
 
 notion = Client(auth=notion_secret)
 
