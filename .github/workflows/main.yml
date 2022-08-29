@@ -18,4 +18,4 @@ jobs:
         server: sydneysnook.com
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
-        server-dir: /home/sydnpljf/sydnook_app/
+        server-dir: /syd_nook/
