@@ -13,17 +13,12 @@ from django.core.wsgi import get_wsgi_application
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'syd_nook.settings')
 
-import subprocess
-
 commands = [
     "source /home/sydnpljf/virtualenv/sydnook_app/3.9/bin/activate",
     "cd /home/sydnpljf/sydnook_app/syd_nook",
     "pip install -r requirements.txt",
     "python syd_nook/syd_nook/manage.py collectstatic"
 ]
-startup = subprocess.run(" && ".join(commands), shell=True, check=True)
-
-with open("startup_error.txt", "w") as f:
-    f.write(str(startup))
+startup = os.system(" && ".join(commands))
 
 application = get_wsgi_application()
