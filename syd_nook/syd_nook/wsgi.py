@@ -17,7 +17,7 @@ commands = [
     "source /home/sydnpljf/virtualenv/sydnook_app/3.9/bin/activate",
     "cd /home/sydnpljf/sydnook_app/syd_nook",
     "pip install -r requirements.txt",
-    "python syd_nook/syd_nook/manage.py collectstatic"
+    "python syd_nook/manage.py collectstatic"
 ]
 startup = os.system(" && ".join(commands))
 
