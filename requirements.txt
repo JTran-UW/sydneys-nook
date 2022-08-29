@@ -3,16 +3,12 @@ asgiref==3.5.2
 certifi==2022.5.18.1
 dj-database-url==0.5.0
 Django==4.0.7
-django-on-heroku==1.1.2
-gunicorn==20.1.0
 h11==0.12.0
 httpcore==0.15.0
 httpx==0.23.0
 idna==3.3
 notion-client==1.0.0
-psycopg2-binary==2.9.3
 rfc3986==1.5.0
 sniffio==1.2.0
 sqlparse==0.4.2
 tzdata==2022.1
-whitenoise==6.2.0
