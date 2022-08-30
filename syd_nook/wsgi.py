@@ -15,7 +15,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'syd_nook.settings')
 
 commands = [
     "source /home/sydnpljf/virtualenv/sydnook_app/3.9/bin/activate",
-    "cd /home/sydnpljf/sydnook_app/syd_nook",
+    "cd /home/sydnpljf/sydnook_app/",
     "pip install -r requirements.txt",
     "python manage.py collectstatic --noinput"
 ]

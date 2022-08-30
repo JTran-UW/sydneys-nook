@@ -1,0 +1,1 @@
+from syd_nook.wsgi import application
