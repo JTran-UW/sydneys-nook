@@ -120,10 +120,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR.joinpath('static')
 ]
-
-print(DEPLOYMENT)
 if DEPLOYMENT:
-    STATIC_ROOT = os.environ["STATIC_ROOT"]
+    STATIC_ROOT = "/home/sydnpljf/sydneysnook.com/static"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
