@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ["SECRET_KEY"]
-DEPLOYMENT = os.environ["DEPLOYMENT"]
+DEPLOYMENT = os.getenv("DEPLOYMENT", "False") == "True"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = not DEPLOYMENT
@@ -120,7 +120,10 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR.joinpath('static')
 ]
-STATIC_ROOT = os.environ["STATIC_ROOT"]
+
+print(DEPLOYMENT)
+if DEPLOYMENT:
+    STATIC_ROOT = os.environ["STATIC_ROOT"]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
