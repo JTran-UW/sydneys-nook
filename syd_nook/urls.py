@@ -18,9 +18,16 @@ from django.urls import path, re_path
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.static import serve
+from django.contrib.sitemaps.views import sitemap
+from .sitemaps import BlogSitemap, StaticSitemap
 import os
 
 from .views import *
+
+sitemaps = {
+    "blog": BlogSitemap,
+    "static": StaticSitemap
+}
 
 urlpatterns = [
     path('', home, name="home"),
@@ -28,6 +35,7 @@ urlpatterns = [
     path('blog/<str:post_id>', post_page, name="post"),
     path('blog/blurb/<int:start_index>-<int:end_index>', post_blurb, name="post blurb"),
     path('admin/', admin.site.urls),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 ]
 
 if os.environ.get("DEPLOYMENT"):
