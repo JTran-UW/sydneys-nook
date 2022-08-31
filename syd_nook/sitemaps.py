@@ -12,7 +12,7 @@ notion = Client(auth=notion_secret)
 
 class BlogSitemap(Sitemap):
     changefreq = "weekly"
-    priority = 0.8
+    priority = 0.7
     protocol = "https"
 
     def items(self):
