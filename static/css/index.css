@@ -221,10 +221,6 @@ Mobile styles
         grid-template-columns: 1fr 1fr !important;
     }
 
-    #link-footer {
-        border-bottom: 0px;
-    }
-
     #search-icon {
         --ggs: 1.5;
     }
