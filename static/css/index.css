@@ -243,4 +243,8 @@ Mobile styles
     #search-icon {
         --ggs: 1.2;
     }
+
+    .post-link-tn {
+        height: 300px;
+    }
 }
