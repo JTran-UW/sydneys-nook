@@ -3,10 +3,11 @@ Blog and potential portfolio site for Sydney Lai
 
 ## Table of Contents
 
- - [Working with the code](#Working-with-the-code)
+ - [Working With The Code](#Working-with-the-code)
  - [Troubleshooting](#Troubleshooting)
+ - [Important Links](#Important-links)
 
-## Working with the code
+## Working With The Code
 
 This project requires Python 3.5 or later.
 
@@ -83,3 +84,13 @@ Sometimes this could be remedied with a simple "turn it off and on again".  In t
 
 Then, find the "sydneysnook.com" app, and click the restart icon.
 ![Screenshot_20220830_180823](https://user-images.githubusercontent.com/46096425/187570717-9f6dd37e-f431-49dc-9645-820a317ef4bb.png)
+
+## Important Links
+
+[Google Search Console](https://search.google.com/search-console)
+
+This application shows you the status of your site on Google.
+
+[Google Analytics](https://analytics.google.com)
+
+This application shows you usage and acquisition data.
