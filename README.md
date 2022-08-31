@@ -1,6 +1,11 @@
 # Sydney Lai Blog, Sydney's Nook
 Blog and potential portfolio site for Sydney Lai
 
+## Table of Contents
+
+ - [Working with the code](#Working-with-the-code)
+ - [Troubleshooting](#Troubleshooting)
+
 ## Working with the code
 
 This project requires Python 3.5 or later.
@@ -55,3 +60,26 @@ python manage.py runserver
 The site will be available at http://127.0.0.1:8000
 
 Use typical git versioning but remember: due to our CI/CD pipeline, committing directly to main will change the website on the web!
+
+## Troubleshooting
+
+Problems could come from anywhere. However, there could be a few likely culprits.
+
+### Uploaded images or static files throwing 404
+
+If this is the case, the startup script may not be collecting static files properly.  Enter the cPanel dashboard, scroll down to the "Advanced" section, and select "Terminal"
+![Screenshot_20220830_175815](https://user-images.githubusercontent.com/46096425/187569804-fbdc23b7-624c-427f-9ae4-dc5cbdc3d1c4.png)
+
+In the terminal, run the below commands.
+```
+source /home/sydnpljf/virtualenv/sydnook_app/3.9/bin/activate && cd /home/sydnpljf/sydnook_app
+python manage.py collectstatic
+```
+
+### Changes to settings.py or main site files cause breaking issues
+
+Sometimes this could be remedied with a simple "turn it off and on again".  In the cPanel dashboard, scroll down to the "Software" section, and select "Setup Python App".
+![Screenshot_20220830_180639](https://user-images.githubusercontent.com/46096425/187570562-4fb04279-3073-438f-893a-33ad3dc1d2cf.png)
+
+Then, find the "sydneysnook.com" app, and click the restart icon.
+![Screenshot_20220830_180823](https://user-images.githubusercontent.com/46096425/187570717-9f6dd37e-f431-49dc-9645-820a317ef4bb.png)
